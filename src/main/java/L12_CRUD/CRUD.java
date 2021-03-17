@@ -6,7 +6,14 @@ package L12_CRUD;
  *  +получение продукта (CRUD operations).
  */
 public class CRUD {
-    private Model model = new Model();
+    private Model model;
+
+    public CRUD() {
+    }
+
+    public CRUD(Model model) {
+        this.model = model;
+    }
 
     public void create(Product product) {
         model.getModel().add(product);
@@ -17,15 +24,14 @@ public class CRUD {
     }
 
     public void readALL() {
-
+        System.out.println(model.toString());
     }
 
     public void update() {
 
     }
 
-    public void delete(long id) {
-        model.getModel().remove(id);
+    public void delete(Long id) {
     }
 
 }
