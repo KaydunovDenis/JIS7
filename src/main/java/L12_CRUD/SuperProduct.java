@@ -3,7 +3,8 @@ package L12_CRUD;
 import java.math.BigDecimal;
 
 public abstract class SuperProduct {
-    public Long id = 0L;
+    private static Long counterID = 0L;
+    public Long id;
     public String name;
     public BigDecimal regularPrice;
     public Category category;
@@ -12,6 +13,6 @@ public abstract class SuperProduct {
     public String description;// - тип данных String (example: Tasty apples from Latvia)
 
     public SuperProduct() {
-        id = ++id;
+        id = ++counterID;
     }
 }

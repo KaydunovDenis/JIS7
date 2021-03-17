@@ -6,7 +6,7 @@ import java.util.List;
 public class Model {
     private List<Product> list = new ArrayList<>();
 
-    public void initialModel() {
+    public void initialModelDemo() {
         list.add(new Product("Apple 10.0", 1000, Category.PHONE));
         list.add(new Product("Samsung 6 PRO", 850, Category.PHONE));
         list.add(new Product("Huawei TIT ALL-00", 314.56, Category.PHONE));
