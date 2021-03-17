@@ -3,7 +3,7 @@ package L12_CRUD;
 import java.math.BigDecimal;
 
 public abstract class SuperProduct {
-    public static Long id = 0L;
+    public Long id = 0L;
     public String name;
     public BigDecimal regularPrice;
     public Category category;
