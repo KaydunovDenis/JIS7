@@ -4,10 +4,13 @@ public abstract class SuperProduct {
     private static Long counterID = 0L;
     public Long id;
     private Model model = new Model();
-    public Currency currency = model.getDefoultCurrency();
+    private Currency defoultCurrencyCurrency = model.getDefoultCurrency();
+    public Currency currency;
 
     public SuperProduct() {
         id = ++counterID;
-
+        currency = defoultCurrencyCurrency;
+        System.out.println("defoultCurrencyCurrency = " + currency);
     }
+
 }

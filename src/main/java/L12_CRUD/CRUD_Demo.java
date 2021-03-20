@@ -13,11 +13,10 @@ public class CRUD_Demo {
         newProduct1.setDescription("Better choice");
         crud.create(newProduct1);
 
-        model.setDefoultCurrency(Currency.BYN);
-
         Product newProduct2 = new Product("Acer 2", 2000.00, Category.NOTEBOOK);
         newProduct2.setDiscount(new BigDecimal("0.3"));
         newProduct2.setDescription("Better choice 2");
+        newProduct2.setCurrency(Currency.BYN);
         crud.create(newProduct2);
 
         crud.readALL();

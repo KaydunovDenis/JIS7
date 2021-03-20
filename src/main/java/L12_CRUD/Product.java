@@ -88,4 +88,8 @@ public class Product extends SuperProduct {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
 }
