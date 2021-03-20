@@ -61,9 +61,9 @@ public class Product extends SuperProduct {
      * Product information:
      * Id: 123
      * Name: Apple
-     * Regular price: 0.14
-     * Discount: 50%
-     * Actual price: 0.07
+     * Regular price: 0.40
+     * Discount: 25%
+     * Actual price: 0.30
      */
     @Override
     public String toString() {
@@ -77,7 +77,8 @@ public class Product extends SuperProduct {
     }
 
     private String getActualPrice() {
-        return regularPrice.multiply(discount).toString();
+        BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
+        return regularPrice.multiply(percentCost).toString();
     }
 
     public void setDiscount(BigDecimal discount) {
