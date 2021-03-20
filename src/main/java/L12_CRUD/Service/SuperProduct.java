@@ -1,4 +1,6 @@
-package L12_CRUD;
+package L12_CRUD.Service;
+
+import L12_CRUD.Database.Model;
 
 public abstract class SuperProduct {
     private static Long counterID = 0L;

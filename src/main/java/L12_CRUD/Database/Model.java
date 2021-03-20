@@ -1,4 +1,8 @@
-package L12_CRUD;
+package L12_CRUD.Database;
+
+import L12_CRUD.Service.Category;
+import L12_CRUD.Service.Currency;
+import L12_CRUD.Service.Product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

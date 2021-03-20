@@ -1,4 +1,4 @@
-package L12_CRUD;
+package L12_CRUD.Service;
 
 public enum Category {
     PHONE ("Телефон"),
