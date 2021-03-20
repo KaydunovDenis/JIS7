@@ -3,7 +3,20 @@ package L12_CRUD;
 import java.math.BigDecimal;
 
 public class Product extends SuperProduct {
+    public String name;
+    public BigDecimal regularPrice;
+    public Category category;
 
+    public BigDecimal discount = new BigDecimal(0);// (example: 0.05) (т.е 5%)
+    public String description;// - тип данных String (example: Tasty apples from Latvia)
+
+    public Product(String name, BigDecimal regularPrice, Category category, BigDecimal discount, String description) {
+        this.name = name;
+        this.regularPrice = regularPrice;
+        this.category = category;
+        this.discount = discount;
+        this.description = description;
+    }
 
     public Product(String name, BigDecimal price, Category category) {
         this.name = name;
@@ -30,9 +43,14 @@ public class Product extends SuperProduct {
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
+    public Product(String name, int regularPrice, Category category, BigDecimal discount, String description) {
+        this.name = name;
+        this.regularPrice = BigDecimal.valueOf(regularPrice);
+        this.discount = discount;
+        this.category = category;
+        this.description = description;
     }
+
 
     public String getDescription() {
         if (description != null && !description.equals("")) return "Description: " + description + '\n';
@@ -51,15 +69,22 @@ public class Product extends SuperProduct {
     public String toString() {
         return "Product information:\n" +
                 "ID: " + id + '\n' +
-                category.toString() + ": " + name + '\n' +
-                "Regular price: " + regularPrice + +'\n' +
+                "Name: " + category.toString() + " " + name + '\n' +
+                "Regular price: " + regularPrice + " " + currency + "\n" +
                 "Discount: " + discount + "%\n" +
-                "Actual price: " + getActualPrice() + "\n" +
+                "Actual price: " + getActualPrice() + " " + currency +"\n" +
                 getDescription() + '\n';
-
     }
 
     private String getActualPrice() {
         return regularPrice.multiply(discount).toString();
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
