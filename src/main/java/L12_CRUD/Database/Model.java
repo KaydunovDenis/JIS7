@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Model {
     private final Map<Long, Product> PRODUCTS = new HashMap<>();
-    private final Currency defoultCurrency = Currency.EUR;
+    private final  Currency defoultCurrency = Currency.EUR;
 
     public void initialModelDemo() {
         PRODUCTS.put(0L, new Product("Apple 10.0", 1000, Category.PHONE,

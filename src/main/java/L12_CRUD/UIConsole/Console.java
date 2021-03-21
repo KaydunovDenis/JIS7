@@ -2,7 +2,6 @@ package L12_CRUD.UIConsole;
 
 import L12_CRUD.Database.Model;
 import L12_CRUD.Service.CRUD;
-import L12_CRUD.Service.Category;
 import L12_CRUD.Service.Product;
 
 import java.io.BufferedReader;
@@ -38,7 +37,7 @@ public class Console implements UserInterface {
         //Arrays.stream(words).forEach(System.out::println);
         switch (words[0]) {
             case "-c":
-                create(temp);
+                create(words);
                 break;
             case "-r":
                 read(words[1]);
@@ -51,6 +50,9 @@ public class Console implements UserInterface {
                 break;
             case "-d":
                 delete(words[1]);
+                break;
+            case "menu":
+                printMenu();
                 break;
             case "-exit":
                 isAlive = false;
@@ -65,10 +67,13 @@ public class Console implements UserInterface {
     }
 
     @Override
-    public void create(String text) {
-        //TODO
-        Product product = new Product("asd", 2, Category.NOTEBOOK);
-        crud.create(product);
+    public void create(String[] array) {
+        try {
+            Product product = new Product(array);
+            crud.create(product);
+        } catch (IllegalArgumentException e) {
+            print("Некорректный ввод продукта");
+        }
     }
 
     @Override
@@ -94,12 +99,13 @@ public class Console implements UserInterface {
     public void printMenu() {
         print("-= Welcome CRUD-SYSTEM! =-\n\n" +
                 "Use command to control SYSTEM:\n" +
-                "-c create\n" +
-                "-r read\n" +
-                "-ra read all\n" +
-                "-u update\n" +
-                "-d delete\n" +
-                "-exit"
+                "-c create product\n" +
+                "-r read product on the id number\n" +
+                "-ra read all product from database\n" +
+                "-u update the product on id\n" +
+                "-d delete product from data base\n" +
+                "menu show the menu of program\n" +
+                "exit exit from the program"
         );
     }
 }

@@ -1,9 +1,7 @@
 package L12_CRUD.UIConsole;
 
 public interface UserInterface {
-
-    void create(String text);
-
+    void create(String[] array);
     void read(String id);
     void readALL();
     void update();
