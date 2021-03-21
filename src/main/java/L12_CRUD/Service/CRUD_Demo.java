@@ -21,6 +21,8 @@ public class CRUD_Demo {
         newProduct2.setCurrency(Currency.BYN);
         crud.create(newProduct2);
 
-        crud.readALL();
+        //crud.readALL();
+
+        crud.read(2L);
     }
 }

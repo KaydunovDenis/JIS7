@@ -10,6 +10,19 @@ public class Product extends SuperProduct {
     public BigDecimal discount = new BigDecimal(0);// (example: 0.05) (т.е 5%)
     public String description;// - тип данных String (example: Tasty apples from Latvia)
 
+    public Product(String name, BigDecimal regularPrice, Category category) {
+        this.name = name;
+        this.regularPrice = regularPrice;
+        this.category = category;
+    }
+
+    public Product(String name, BigDecimal regularPrice, Category category, BigDecimal discount) {
+        this.name = name;
+        this.regularPrice = regularPrice;
+        this.category = category;
+        this.discount = discount;
+    }
+
     public Product(String name, BigDecimal regularPrice, Category category, BigDecimal discount, String description) {
         this.name = name;
         this.regularPrice = regularPrice;
@@ -18,39 +31,26 @@ public class Product extends SuperProduct {
         this.description = description;
     }
 
-    public Product(String name, BigDecimal price, Category category) {
-        this.name = name;
-        this.regularPrice = price;
-        this.category = category;
-    }
-
-    public Product(String name, int price, Category category) {
-        this.name = name;
-        this.regularPrice = BigDecimal.valueOf(price);
-        this.category = category;
-    }
-
-    public Product(String name, double price, Category category) {
-        this.name = name;
-        this.regularPrice = BigDecimal.valueOf(price);
-        this.category = category;
-    }
-
-    public Product(String name, double price, Category category, String description) {
-        this.name = name;
-        this.regularPrice = BigDecimal.valueOf(price);
-        this.category = category;
-        this.description = description;
-    }
-
     public Product(String name, int regularPrice, Category category, BigDecimal discount, String description) {
         this.name = name;
-        this.regularPrice = BigDecimal.valueOf(regularPrice);
-        this.discount = discount;
+        this.regularPrice = new BigDecimal(regularPrice);
         this.category = category;
+        this.discount = discount;
         this.description = description;
     }
 
+    public Product(String name, int regularPrice, Category category) {
+        this.name = name;
+        this.regularPrice = new BigDecimal(regularPrice);
+        this.category = category;
+
+    }
+
+    public Product(String name, double regularPrice, Category category) {
+        this.name = name;
+        this.regularPrice = new BigDecimal(regularPrice);
+        this.category = category;
+    }
 
     public String getDescription() {
         if (description != null && !description.equals("")) return "Description: " + description + '\n';
@@ -91,5 +91,17 @@ public class Product extends SuperProduct {
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRegularPrice(BigDecimal regularPrice) {
+        this.regularPrice = regularPrice;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

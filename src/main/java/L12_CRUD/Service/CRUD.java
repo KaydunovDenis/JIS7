@@ -10,19 +10,20 @@ import L12_CRUD.Database.Model;
 public class CRUD {
     private Model model;
 
-    public CRUD() {
-    }
-
     public CRUD(Model model) {
         this.model = model;
     }
 
     public void create(Product product) {
-        model.getModel().add(product);
+        model.getListProduct().put(product.id, product);
     }
 
-    public void read(long id) {
-
+    public String read(Long id) {
+        try {
+            return model.getListProduct().get(id).toString();
+        } catch (NullPointerException e) {
+            return "Продукт с указанным ID отсутствует";
+        }
     }
 
     public void readALL() {
@@ -33,7 +34,16 @@ public class CRUD {
 
     }
 
-    public void delete(Long id) {
+    public String delete(Long id) {
+        try {
+            model.getListProduct().remove(id);
+            return "Удаление id = " + id + " успешно";
+        } catch (IndexOutOfBoundsException e) {
+            return "Продукт с указанным ID отсутствует";
+        }
     }
 
+    public Model getModel() {
+        return model;
+    }
 }

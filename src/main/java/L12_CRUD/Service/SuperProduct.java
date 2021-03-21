@@ -10,9 +10,8 @@ public abstract class SuperProduct {
     public Currency currency;
 
     public SuperProduct() {
-        id = ++counterID;
+        id = counterID++;
         currency = defoultCurrencyCurrency;
-        System.out.println("defoultCurrencyCurrency = " + currency);
     }
 
 }
