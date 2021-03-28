@@ -1,11 +1,11 @@
-package L12_CRUD.Service;
+package com.github.KaydunovDenis.crud.Service;
 
-import L12_CRUD.Database.Model;
+import com.github.KaydunovDenis.crud.Database.Model;
 
 /**
- *  +добавление/
- *  +удаление/
- *  +получение продукта (CRUD operations).
+ * +добавление/
+ * +удаление/
+ * +получение продукта (CRUD operations).
  */
 public class CRUD {
     private Model model;

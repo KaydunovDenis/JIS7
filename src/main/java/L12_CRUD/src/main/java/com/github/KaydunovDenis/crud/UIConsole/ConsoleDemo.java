@@ -1,4 +1,4 @@
-package L12_CRUD.UIConsole;
+package com.github.KaydunovDenis.crud.UIConsole;
 
 public class ConsoleDemo {
     public static void main(String[] args) {

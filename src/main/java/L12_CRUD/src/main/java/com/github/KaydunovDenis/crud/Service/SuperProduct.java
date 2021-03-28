@@ -1,6 +1,6 @@
-package L12_CRUD.Service;
+package com.github.KaydunovDenis.crud.Service;
 
-import L12_CRUD.Database.Model;
+import com.github.KaydunovDenis.crud.Database.Model;
 
 public abstract class SuperProduct {
     private static Long counterID = 0L;

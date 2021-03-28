@@ -1,4 +1,4 @@
-package L12_CRUD.Service;
+package com.github.KaydunovDenis.crud.Service;
 
 public enum Currency {
     EUR ("Евро"),

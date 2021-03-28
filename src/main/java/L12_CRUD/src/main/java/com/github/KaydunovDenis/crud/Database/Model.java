@@ -1,8 +1,8 @@
-package L12_CRUD.Database;
+package com.github.KaydunovDenis.crud.Database;
 
-import L12_CRUD.Service.Category;
-import L12_CRUD.Service.Currency;
-import L12_CRUD.Service.Product;
+import com.github.KaydunovDenis.crud.Service.Category;
+import com.github.KaydunovDenis.crud.Service.Currency;
+import com.github.KaydunovDenis.crud.Service.Product;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Model {
     private final Map<Long, Product> PRODUCTS = new HashMap<>();
-    private final  Currency defoultCurrency = Currency.EUR;
+    private final Currency defoultCurrency = Currency.EUR;
 
     public void initialModelDemo() {
         PRODUCTS.put(0L, new Product("Apple 10.0", 1000, Category.PHONE,

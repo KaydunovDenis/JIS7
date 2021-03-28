@@ -1,8 +1,8 @@
-package L12_CRUD.UIConsole;
+package com.github.KaydunovDenis.crud.UIConsole;
 
-import L12_CRUD.Database.Model;
-import L12_CRUD.Service.CRUD;
-import L12_CRUD.Service.Product;
+import com.github.KaydunovDenis.crud.Database.Model;
+import com.github.KaydunovDenis.crud.Service.CRUD;
+import com.github.KaydunovDenis.crud.Service.Product;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,9 +15,9 @@ public class Console implements UserInterface {
     boolean isAlive = true;
 
     public void start() {
-        printMenu();
         try {
             while (isAlive) {
+                printMenu();
                 execute(reader.readLine()
                         .trim());
             }
