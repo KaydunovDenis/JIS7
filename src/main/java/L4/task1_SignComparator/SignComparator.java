@@ -1,5 +1,5 @@
 package L4.task1_SignComparator;
-
+//**********@Checked***************//
 public class SignComparator {
 
     public String compare(int number) {
