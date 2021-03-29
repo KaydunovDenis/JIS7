@@ -7,10 +7,10 @@ import com.github.KaydunovDenis.crud.Database.Model;
  * +удаление/
  * +получение продукта (CRUD operations).
  */
-public class CRUD {
+public class CrudService {
     private Model model;
 
-    public CRUD(Model model) {
+    public CrudService(Model model) {
         this.model = model;
     }
 
