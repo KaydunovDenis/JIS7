@@ -79,8 +79,9 @@ public class Product extends SuperProduct {
     }
 
     public String getDescription() {
-        if (description != null && !description.equals("")) return "Description: " + description + '\n';
-        return "";
+        if (description != null && !description.equals(""))
+            return "Description: " + description + '\n';
+        else return "";
     }
 
     /**
@@ -93,18 +94,22 @@ public class Product extends SuperProduct {
      */
     @Override
     public String toString() {
+        String textRegularPrice = String.valueOf(regularPrice.doubleValue());
+        String textActualPrice = getActualPrice();
         return "Product information:\n" +
                 "ID: " + id + '\n' +
                 "Name: " + category.toString() + " " + name + '\n' +
-                "Regular price: " + regularPrice + " " + currency + "\n" +
+                "Regular price: " + textRegularPrice + " " + currency + "\n" +
                 "Discount: " + discount + "%\n" +
-                "Actual price: " + getActualPrice() + " " + currency +"\n" +
-                getDescription() + '\n';
+                "Actual price: " + textActualPrice + " " + currency +"\n" +
+                "Description: " + getDescription();
     }
 
     private String getActualPrice() {
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
-        return regularPrice.multiply(percentCost).toString();
+        BigDecimal actualPrice = regularPrice.multiply(percentCost);
+        //TODO сделать красивый вывод актуальной цены без степеней
+        return String.valueOf(actualPrice.doubleValue());
     }
 
     public void setDiscount(BigDecimal discount) {
@@ -118,10 +123,4 @@ public class Product extends SuperProduct {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
 }

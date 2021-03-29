@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 public class Console implements UserInterface {
     public final CRUD crud = new CRUD(new Model());
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
     boolean isAlive = true;
 
     public void start() {
@@ -49,7 +48,7 @@ public class Console implements UserInterface {
                 update();
                 break;
             case "-d":
-                delete(words[1]);
+                delete(words);
                 break;
             case "menu":
                 printMenu();
@@ -67,9 +66,9 @@ public class Console implements UserInterface {
     }
 
     @Override
-    public void create(String[] array) {
+    public void create(String[] command) {
         try {
-            Product product = new Product(array);
+            Product product = new Product(command);
             crud.create(product);
         } catch (IllegalArgumentException e) {
             print("Некорректный ввод продукта");
@@ -92,16 +91,19 @@ public class Console implements UserInterface {
     }
 
     @Override
-    public void delete(String id) {
-        print(crud.delete(Long.parseLong(id)));
+    public void delete(String[] command) {
+        final int positionIdProductInCommand = 1;
+        if (command.length >= 1) {
+            print(crud.delete(Long.parseLong(command[positionIdProductInCommand])));
+        } else print("Не корректный суффикс команды");
     }
 
     public void printMenu() {
-        print("-= Welcome CRUD-SYSTEM! =-\n\n" +
+        print("-= Welcome CRUD-SYSTEM! =-\n" +
                 "Use command to control SYSTEM:\n" +
                 "-c create product\n" +
-                "-r read product on the id number\n" +
-                "-ra read all product from database\n" +
+                "-r Х : read product where id=X\n" +
+                "-ra : read all product from database\n" +
                 "-u update the product on id\n" +
                 "-d delete product from data base\n" +
                 "menu show the menu of program\n" +

@@ -5,5 +5,5 @@ public interface UserInterface {
     void read(String id);
     void readALL();
     void update();
-    void delete(String id);
+    void delete(String[] command);
 }
