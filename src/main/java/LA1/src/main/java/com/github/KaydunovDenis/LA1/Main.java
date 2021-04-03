@@ -9,11 +9,11 @@ public class Main {
     public static void main(String[] args) {
         int[] massive = initializeMassive();           //1
         printMassive(massive);
-        int[] sortMassive = sortMassive(massive);      //2
-        printMassive(sortMassive);
+        sortMassive(massive);      //2
+        printMassive(massive);
         int[] reverseMassive = createReverseSortMassive(massive);//3
         printMassive(reverseMassive);
-        uniteAndPrintMassive(sortMassive, reverseMassive);//4
+        uniteAndPrintMassive(massive, reverseMassive);//4
     }
 
     public static int[] initializeMassive() {
@@ -25,20 +25,17 @@ public class Main {
     }
 
     public static void printMassive(int[] massive) {
-        for (int element : massive) {
-            System.out.print(element + " ");
-        }
+        Arrays.stream(massive).forEach(x-> System.out.print(x + " "));
         System.out.println("\n");
     }
 
-    public static int[] sortMassive(int[] massive) {
+    public static void sortMassive(int[] massive) {
         Arrays.sort(massive);
-        return massive;
     }
 
     public static int[] createReverseSortMassive(int[] massive) {
         int[] reverseMassive = new int[massive.length];
-        int[] tempMassive = sortMassive(massive);
+        int[] tempMassive = massive;
         for (int i = 0; i < massive.length; i++) {
             reverseMassive[i] = tempMassive[massive.length - i - 1];
         }
