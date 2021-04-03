@@ -35,9 +35,8 @@ public class Main {
 
     public static int[] createReverseSortMassive(int[] massive) {
         int[] reverseMassive = new int[massive.length];
-        int[] tempMassive = massive;
         for (int i = 0; i < massive.length; i++) {
-            reverseMassive[i] = tempMassive[massive.length - i - 1];
+            reverseMassive[i] = massive[massive.length - i - 1];
         }
         return reverseMassive;
     }
