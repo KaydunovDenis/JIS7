@@ -1,4 +1,4 @@
-package com.github.KaydunovDenis.crud;
+package com.github.KaydunovDenis.LA1;
 
 import java.util.Arrays;
 import java.util.Random;
