@@ -1,5 +1,5 @@
 package L3.task1_Dog;
-
+//**********@Checked***************//
 public class DogDemo {
     public static void main(String[] args) {
         Dog dog1 = new Dog(12, "Black", "Archi");

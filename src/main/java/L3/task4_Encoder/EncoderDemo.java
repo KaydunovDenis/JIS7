@@ -1,5 +1,5 @@
 package L3.task4_Encoder;
-
+//**********@Checked***************//
 public class EncoderDemo {
     public static void main(String[] args) {
         Encoder encoder = new Encoder();

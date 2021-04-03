@@ -12,7 +12,7 @@ public class Product {
     double actualPrice() {
         if (regularPrice < 0 || discount < 0 || discount > 1) {
             System.out.println("Product - " + name + " were input error value. Enter correct value.");
-            System.exit(0);
+            System.exit(0);//**********Так лучше не делать. Ты останавливаешь работу программы. Подумай как сделать лучше. Приложения Java должны быть отказоустойчивы***************//
         }
         return regularPrice * (1- discount);
     }

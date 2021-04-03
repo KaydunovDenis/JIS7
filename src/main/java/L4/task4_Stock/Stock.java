@@ -1,5 +1,5 @@
 package L4.task4_Stock;
-
+//**********@Checked***************//
 /*
 
 
@@ -19,7 +19,7 @@ Company = "GOOG", Current Price = 10, Min Price = 10, Max Price = 10
 
 Company = "GOOG", Current Price = 14, Min Price = 7, Max Price = 15
  */
-
+//**********@Checked***************//
 public class Stock {
     private String name;
     private int currentPrice;
