@@ -1,8 +1,8 @@
 package com.github.KaydunovDenis.crud.UIConsole;
 
-import com.github.KaydunovDenis.crud.Database.Model;
+import com.github.KaydunovDenis.crud.Model.Model;
 import com.github.KaydunovDenis.crud.Service.CrudService;
-import com.github.KaydunovDenis.crud.Service.Product;
+import com.github.KaydunovDenis.crud.Model.Product;
 
 import java.io.BufferedReader;
 import java.io.IOException;

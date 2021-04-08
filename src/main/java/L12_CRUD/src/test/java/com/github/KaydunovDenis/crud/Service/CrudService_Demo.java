@@ -1,6 +1,9 @@
 package com.github.KaydunovDenis.crud.Service;
 
-import com.github.KaydunovDenis.crud.Database.Model;
+import com.github.KaydunovDenis.crud.Model.Category;
+import com.github.KaydunovDenis.crud.Model.Currency;
+import com.github.KaydunovDenis.crud.Model.Model;
+import com.github.KaydunovDenis.crud.Model.Product;
 import com.github.KaydunovDenis.crud.UIConsole.Console;
 
 import java.math.BigDecimal;

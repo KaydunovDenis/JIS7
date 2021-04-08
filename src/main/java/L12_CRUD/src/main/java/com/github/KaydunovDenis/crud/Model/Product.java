@@ -1,4 +1,4 @@
-package com.github.KaydunovDenis.crud.Service;
+package com.github.KaydunovDenis.crud.Model;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

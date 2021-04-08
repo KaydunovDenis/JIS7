@@ -1,8 +1,4 @@
-package com.github.KaydunovDenis.crud.Database;
-
-import com.github.KaydunovDenis.crud.Service.Category;
-import com.github.KaydunovDenis.crud.Service.Currency;
-import com.github.KaydunovDenis.crud.Service.Product;
+package com.github.KaydunovDenis.crud.Model;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

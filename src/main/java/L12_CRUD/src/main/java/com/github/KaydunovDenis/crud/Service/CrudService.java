@@ -1,6 +1,7 @@
 package com.github.KaydunovDenis.crud.Service;
 
-import com.github.KaydunovDenis.crud.Database.Model;
+import com.github.KaydunovDenis.crud.Model.Model;
+import com.github.KaydunovDenis.crud.Model.Product;
 
 /**
  * +добавление/

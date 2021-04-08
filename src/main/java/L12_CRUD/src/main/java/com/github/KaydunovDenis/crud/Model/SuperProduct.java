@@ -1,6 +1,7 @@
-package com.github.KaydunovDenis.crud.Service;
+package com.github.KaydunovDenis.crud.Model;
 
-import com.github.KaydunovDenis.crud.Database.Model;
+import com.github.KaydunovDenis.crud.Model.Currency;
+import com.github.KaydunovDenis.crud.Model.Model;
 
 public abstract class SuperProduct {
     private static Long counterID = 0L;
