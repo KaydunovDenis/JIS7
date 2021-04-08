@@ -1,7 +1,7 @@
 package com.github.KaydunovDenis.crud.UIConsole;
 
 import com.github.KaydunovDenis.crud.Database.Model;
-import com.github.KaydunovDenis.crud.Service.CRUD;
+import com.github.KaydunovDenis.crud.Service.CrudService;
 import com.github.KaydunovDenis.crud.Service.Product;
 
 import java.io.BufferedReader;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Console implements UserInterface {
-    public final CRUD crud = new CRUD(new Model());
+    public final CrudService crudService = new CrudService(new Model());
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     boolean isAlive = true;
 
@@ -69,7 +69,7 @@ public class Console implements UserInterface {
     public void create(String[] command) {
         try {
             Product product = new Product(command);
-            crud.create(product);
+            crudService.create(product);
         } catch (IllegalArgumentException e) {
             print("Некорректный ввод продукта");
         }
@@ -77,24 +77,24 @@ public class Console implements UserInterface {
 
     @Override
     public void read(String id) {
-        print(crud.read(Long.parseLong(id)));
+        print(crudService.read(Long.parseLong(id)));
     }
 
     @Override
     public void readALL() {
-        crud.readALL();
+        crudService.readALL();
     }
 
     @Override
     public void update() {
-        crud.update();
+        crudService.update();
     }
 
     @Override
     public void delete(String[] command) {
         final int positionIdProductInCommand = 1;
         if (command.length >= 1) {
-            print(crud.delete(Long.parseLong(command[positionIdProductInCommand])));
+            print(crudService.delete(Long.parseLong(command[positionIdProductInCommand])));
         } else print("Не корректный суффикс команды");
     }
 
