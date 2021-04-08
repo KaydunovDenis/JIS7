@@ -4,3 +4,4 @@ lecturer/
 pom.xml
 src/test/
 target/
+.iml
