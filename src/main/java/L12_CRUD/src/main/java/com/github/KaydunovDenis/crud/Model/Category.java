@@ -6,14 +6,14 @@ public enum Category {
     NOTEBOOK("Ноутбук"),
     COMPUTER("Компьютер");
 
-    private final String title;
+    private final String category;
 
-    Category(String title) {
-        this.title = title;
+    Category(String category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        return title;
+        return category;
     }
 }

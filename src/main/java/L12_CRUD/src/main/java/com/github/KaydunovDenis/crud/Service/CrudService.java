@@ -2,6 +2,7 @@ package com.github.KaydunovDenis.crud.Service;
 
 import com.github.KaydunovDenis.crud.Model.Model;
 import com.github.KaydunovDenis.crud.Model.Product;
+import com.github.KaydunovDenis.crud.UIConsole.Console;
 
 /**
  * +добавление/
@@ -9,10 +10,10 @@ import com.github.KaydunovDenis.crud.Model.Product;
  * +получение продукта (CRUD operations).
  */
 public class CrudService {
-    private Model model;
+    public static Model model = new Model();
 
-    public CrudService(Model model) {
-        this.model = model;
+    public static void main(String[] args) {
+        model.initialModelDemo();
     }
 
     public void create(Product product) {
