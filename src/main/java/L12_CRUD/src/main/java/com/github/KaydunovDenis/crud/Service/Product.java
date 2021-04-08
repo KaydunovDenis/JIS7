@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Product extends SuperProduct {
@@ -13,11 +14,13 @@ public class Product extends SuperProduct {
 
     public BigDecimal discount = new BigDecimal(0);// (example: 0.05) (т.е 5%)
     public String description;// - тип данных String (example: Tasty apples from Latvia)
-    private final MathContext context = new MathContext(2, RoundingMode.HALF_UP);
+    private final MathContext context = new MathContext(10, RoundingMode.HALF_UP);
 
     //TODO
     /*
     Перенести  вcе конструкторы   в конструктор с array
+
+    Сделать правильный вывод цен, чтобы небыло неправильного округления BigDecimal
 
     обработать ошибку null при создании продукта
      */
@@ -94,7 +97,7 @@ public class Product extends SuperProduct {
      */
     @Override
     public String toString() {
-        String textRegularPrice = String.valueOf(regularPrice.doubleValue());
+        String textRegularPrice = String.valueOf(regularPrice.setScale(2, RoundingMode.HALF_UP).doubleValue());
         String textActualPrice = getActualPrice();
         return "Product information:\n" +
                 "ID: " + id + '\n' +
@@ -108,7 +111,10 @@ public class Product extends SuperProduct {
     private String getActualPrice() {
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
         BigDecimal actualPrice = regularPrice.multiply(percentCost);
+        Scanner scanner = new Scanner(System.in);
+        scanner.next();
         //TODO сделать красивый вывод актуальной цены без степеней
+
         return String.valueOf(actualPrice.doubleValue());
     }
 

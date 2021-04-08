@@ -16,7 +16,7 @@ public class Model {
         PRODUCTS.put(0L, new Product("Apple 10.0", 1000, Category.PHONE,
                 new BigDecimal("0.5"),"Содержит подключение с чипом виртуальной реальности"));
         PRODUCTS.put(1L, new Product("Samsung 6 PRO", 850, Category.PHONE));
-        PRODUCTS.put(2L, new Product("Huawei TIT ALL-00", 314.56, Category.PHONE));
+        PRODUCTS.put(2L, new Product("Huawei TIT ALL-00", 31234234234324.5634, Category.PHONE));
         PRODUCTS.put(3L, new Product("Huawei tablet 5.1", 420, Category.TABLET));
         PRODUCTS.put(4L, new Product("Huawei tablet 6 PRO", 620, Category.TABLET));
         PRODUCTS.put(5L, new Product("Huawei tablet 5.7", 470, Category.TABLET));
