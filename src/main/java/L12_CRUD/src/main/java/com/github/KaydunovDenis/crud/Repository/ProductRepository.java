@@ -1,14 +1,14 @@
-package com.github.KaydunovDenis.crud.Model;
+package com.github.KaydunovDenis.crud.Repository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Model {
+public class ProductRepository {
     private final Map<Long, Product> PRODUCTS = new HashMap<>();
     private final Currency defoultCurrency = Currency.EUR;
 
-    public void initialModelDemo() {
+    public void initialProductRepository() {
         PRODUCTS.put(0L, new Product("Apple 10.0", 1000, Category.PHONE,
                 new BigDecimal("0.5"),"Содержит подключение с чипом виртуальной реальности"));
         PRODUCTS.put(1L, new Product("Samsung 6 PRO", 850, Category.PHONE));
