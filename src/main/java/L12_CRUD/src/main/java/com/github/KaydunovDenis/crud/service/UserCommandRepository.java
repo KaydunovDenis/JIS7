@@ -1,6 +1,6 @@
-package com.github.KaydunovDenis.crud.UIConsole;
+package com.github.KaydunovDenis.crud.service;
 
-public interface UserInterface {
+public interface UserCommandRepository {
     void create(String[] array);
     void read(String id);
     void readALL();

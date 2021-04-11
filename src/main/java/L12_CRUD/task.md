@@ -14,12 +14,12 @@
     String name;
     Long id;
     BigDecimal price;
-    Enum Category category;
+    Enum Category productCategory;
 
     BigDecimal discount; (example: 0.05) (т.е 5%)
     String description - тип данных String (example: Tasty apples from Latvia)
 
-[+] #Категоря (category) - enum 
+[+] #Категоря (productCategory) - enum 
 
 - [ ] В случае если основное поле не было введено - не записывать продукт,
         а сообщить пользователю о том, что поле не введено или введено некорректно.

@@ -1,6 +1,6 @@
-package com.github.KaydunovDenis.crud.Repository;
+package com.github.KaydunovDenis.crud.model;
 
-public enum Category {
+public enum ProductCategory {
     PHONE ("Телефон"),
     TABLET("Планшет"),
     NOTEBOOK("Ноутбук"),
@@ -8,7 +8,7 @@ public enum Category {
 
     private final String category;
 
-    Category(String category) {
+    ProductCategory(String category) {
         this.category = category;
     }
 
