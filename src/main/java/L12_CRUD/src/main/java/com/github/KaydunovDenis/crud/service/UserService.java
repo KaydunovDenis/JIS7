@@ -11,6 +11,13 @@ public class UserService implements UserCommandRepository {
     public Console console;
     private boolean isAlive = true;
 
+    final String MESSAGE_ERROR_COMMAND =
+            "Error command. Write command according the menu.\n" +
+            "Example commands:\n" +
+            "-r 0\n" +
+            "-ra\n" +
+            "-c SuperPhone 100.0 PHONE";
+
     public UserService(CrudService crudService, Console console) {
         this.crudService = crudService;
         this.console = console;
@@ -32,9 +39,7 @@ public class UserService implements UserCommandRepository {
     }
 
     private void execute(String temp) {
-        if (temp.equals("") || temp.isEmpty()) {
-            console.print("Некорректный ввод");
-        }
+        validateEmptyComand(temp);
         final String SPLIT_SYMBOL = "\\s";
         String[] words = temp.split(SPLIT_SYMBOL);
         //Arrays.stream(words).forEach(System.out::println);
@@ -46,7 +51,13 @@ public class UserService implements UserCommandRepository {
             case "-d" -> delete(words);
             case "-menu" -> console.printMenu();
             case "-exit" -> isAlive = false;
-            default -> console.print("Некорректная команда");
+            default -> console.print(MESSAGE_ERROR_COMMAND);
+        }
+    }
+
+    private void validateEmptyComand(String temp) {
+        if (temp.equals("") || temp.isEmpty()) {
+            console.print("Некорректный команда. Команда не должна быть пустой");
         }
     }
 
@@ -62,7 +73,7 @@ public class UserService implements UserCommandRepository {
 
     @Override
     public void read(String id) {
-        console.print(crudService.read(Long.parseLong(id)));
+        console.print(crudService.read(Long.parseLong(id)));//TODO validate id
     }
 
     @Override

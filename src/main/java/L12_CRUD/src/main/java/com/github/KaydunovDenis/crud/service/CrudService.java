@@ -13,13 +13,13 @@ public class CrudService implements CrudServiceRepository {
 
     @Override
     public void create(Product product) {
-        PRODUCT_REPOSITORY.getListProduct().put(product.ID, product);
+        PRODUCT_REPOSITORY.getPRODUCTS().put(product.ID, product);
     }
 
     @Override
     public String read(Long id) {
         try {
-            return PRODUCT_REPOSITORY.getListProduct().get(id).toString();
+            return PRODUCT_REPOSITORY.getPRODUCTS().get(id).toString();
         } catch (NullPointerException e) {
             return "Продукт с указанным ID отсутствует";
         }
@@ -38,7 +38,7 @@ public class CrudService implements CrudServiceRepository {
     @Override
     public String delete(Long id) {
         try {
-            PRODUCT_REPOSITORY.getListProduct().remove(id);
+            PRODUCT_REPOSITORY.getPRODUCTS().remove(id);
             return "Удаление id = " + id + " успешно";
         } catch (IndexOutOfBoundsException e) {
             return "Продукт с указанным ID отсутствует";

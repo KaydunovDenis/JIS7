@@ -37,7 +37,7 @@ public class ProductRepository {
         return result.toString();
     }
 
-    public Map<Long, Product> getListProduct() {
+    public Map<Long, Product> getPRODUCTS() {
         return PRODUCTS;
     }
 
