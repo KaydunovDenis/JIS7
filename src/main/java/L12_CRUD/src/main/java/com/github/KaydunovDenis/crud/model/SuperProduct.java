@@ -1,7 +1,5 @@
 package com.github.KaydunovDenis.crud.model;
 
-import com.github.KaydunovDenis.crud.model.Currency;
-
 public abstract class SuperProduct {
     public String name;
     final public Long ID;

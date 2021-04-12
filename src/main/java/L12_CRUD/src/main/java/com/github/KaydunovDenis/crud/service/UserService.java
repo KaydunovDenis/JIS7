@@ -1,7 +1,9 @@
 package com.github.KaydunovDenis.crud.service;
 
 import com.github.KaydunovDenis.crud.model.Product;
+
 import java.io.IOException;
+
 import static com.github.KaydunovDenis.crud.service.Console.reader;
 
 public class UserService implements UserCommandRepository {
@@ -33,7 +35,7 @@ public class UserService implements UserCommandRepository {
         if (temp.equals("") || temp.isEmpty()) {
             console.print("Некорректный ввод");
         }
-        String SPLIT_SYMBOL = "\\s";
+        final String SPLIT_SYMBOL = "\\s";
         String[] words = temp.split(SPLIT_SYMBOL);
         //Arrays.stream(words).forEach(System.out::println);
         switch (words[0]) {
@@ -42,7 +44,7 @@ public class UserService implements UserCommandRepository {
             case "-ra" -> readALL();
             case "-u" -> update();
             case "-d" -> delete(words);
-            case "menu" -> console.printMenu();
+            case "-menu" -> console.printMenu();
             case "-exit" -> isAlive = false;
             default -> console.print("Некорректная команда");
         }

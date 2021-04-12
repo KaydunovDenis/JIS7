@@ -74,7 +74,7 @@ public class Product extends SuperProduct {
         if (length >= 5) {
             discount = new BigDecimal(array[4], FILTER_SETTING);
         }
-        if (length >=6) {
+        if (length >= 6) {
             description = Arrays.stream(array, 4, length).collect(Collectors.joining());
         }
     }
@@ -102,7 +102,7 @@ public class Product extends SuperProduct {
                 "Name: " + productCategory.toString() + " " + name + '\n' +
                 "Regular price: " + textRegularPrice + " " + currency + "\n" +
                 "Discount: " + discount + "%\n" +
-                "Actual price: " + textActualPrice + " " + currency +"\n" +
+                "Actual price: " + textActualPrice + " " + currency + "\n" +
                 "Description: " + getDescription();
     }
 

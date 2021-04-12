@@ -1,7 +1,7 @@
 package com.github.KaydunovDenis.crud.model;
 
 public enum ProductCategory {
-    PHONE ("Телефон"),
+    PHONE("Телефон"),
     TABLET("Планшет"),
     NOTEBOOK("Ноутбук"),
     COMPUTER("Компьютер");

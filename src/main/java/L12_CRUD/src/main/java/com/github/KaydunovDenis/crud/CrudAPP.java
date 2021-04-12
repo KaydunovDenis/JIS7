@@ -10,5 +10,6 @@ public class CrudAPP {
         crudService.getPRODUCT_REPOSITORY().initialProductRepository();
         UserService userService = new UserService(new CrudService(), new Console());
         userService.start();
+
     }
 }

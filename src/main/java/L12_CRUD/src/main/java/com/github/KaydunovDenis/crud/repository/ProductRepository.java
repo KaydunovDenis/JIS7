@@ -12,7 +12,7 @@ public class ProductRepository {
 
     public void initialProductRepository() {
         PRODUCTS.put(0L, new Product("Apple 10.0", 1000, ProductCategory.PHONE,
-                new BigDecimal("0.5"),"Содержит подключение с чипом виртуальной реальности"));
+                new BigDecimal("0.5"), "Содержит подключение с чипом виртуальной реальности"));
         PRODUCTS.put(1L, new Product("Samsung 6 PRO", 850, ProductCategory.PHONE));
         PRODUCTS.put(2L, new Product("Huawei TIT ALL-00", 31234234234324.5634, ProductCategory.PHONE));
         PRODUCTS.put(3L, new Product("Huawei tablet 5.1", 420, ProductCategory.TABLET));
@@ -30,7 +30,7 @@ public class ProductRepository {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (Map.Entry<Long, Product> product: PRODUCTS.entrySet()) {
+        for (Map.Entry<Long, Product> product : PRODUCTS.entrySet()) {
             result.append(product.toString())
                     .append("\n");
         }
