@@ -3,9 +3,6 @@ package com.github.kaydunovDenis.crud.model;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Product extends SuperProduct {
     //ID
@@ -17,13 +14,12 @@ public class Product extends SuperProduct {
     final private static MathContext FILTER_SETTING = new MathContext(10, RoundingMode.HALF_UP);
 
     /**
-     * @param args
-     * <br> 1 Name: Apple
-     * <br> 2 Regular price: 0.40
-     * <br> 3 Product category: PHONE
-     * <br> 4 Discount: 25%
-     * <br> 5 Description: information
-     *  @author  Kaydunov Denis
+     * @param args <br> 1 Name: Apple
+     *             <br> 2 Regular price: 0.40
+     *             <br> 3 Product category: PHONE
+     *             <br> 4 Discount: 25%
+     *             <br> 5 Description: information
+     * @author Kaydunov Denis
      */
     public Product(String[] args) {
         int length = args.length;
@@ -37,13 +33,12 @@ public class Product extends SuperProduct {
         }
         if (length >= 5) {
             description = args[4];
-                    //Arrays.stream(args, 4, length).collect(Collectors.joining());
+            //Arrays.stream(args, 4, length).collect(Collectors.joining());
         }
     }
 
     /**
-     * @return
-     * Product information:
+     * @return Product information:
      * <br>ID: 123
      * <br>Name: Apple
      * <br>Regular price: 0.40
@@ -53,14 +48,13 @@ public class Product extends SuperProduct {
      */
     @Override
     public String toString() {
-        String textRegularPrice = String.valueOf(regularPrice.setScale(2, RoundingMode.HALF_UP).doubleValue());
-        String textActualPrice = getActualPrice();
+        //String textRegularPrice = String.valueOf(regularPrice.setScale(2, RoundingMode.HALF_UP).doubleValue());
         return "Product information:\n" +
                 "ID: " + ID + '\n' +
                 "Name: " + productCategory.toString() + " " + name + '\n' +
-                "Regular price: " + textRegularPrice + " евро" + "\n" +
+                "Regular price: " + regularPrice.toString() + " евро" + "\n" +
                 "Discount: " + discount + "%\n" +
-                "Actual price: " + textActualPrice + " евро" + "\n" +
+                "Actual price: " + getActualPrice() + " евро" + "\n" +
                 "Description: " + description;
     }
 
@@ -69,8 +63,6 @@ public class Product extends SuperProduct {
         //todo либо сделать валидацию входящих данных при создании продукта
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
         BigDecimal actualPrice = regularPrice.multiply(percentCost);
-        Scanner scanner = new Scanner(System.in);
-        scanner.next();
         //TODO сделать красивый вывод актуальной цены без степеней
         return String.valueOf(actualPrice.doubleValue());
     }

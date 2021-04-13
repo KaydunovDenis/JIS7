@@ -9,7 +9,7 @@ public interface CrudServiceRepository {
 
     String readALL();
 
-    void update();
+    String update();
 
     String delete(Long id);
 }

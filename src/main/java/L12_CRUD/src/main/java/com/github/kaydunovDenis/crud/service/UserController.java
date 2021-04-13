@@ -4,14 +4,12 @@ import com.github.kaydunovDenis.crud.model.Product;
 import com.github.kaydunovDenis.crud.uiConsole.UserConsole;
 
 public class UserController implements UserCommandRepository{
-    final private CrudService CRUD_SERVICE;
+    final private CrudService CRUD_SERVICE = new CrudService();
     final private UserConsole USER_CONSOLE;
     final int POSITION_ID_IN_COMMAND = 1;
 
-
-    public UserController(CrudService crudService, UserConsole userConsole) {
-        this.CRUD_SERVICE = crudService;
-        this.USER_CONSOLE = userConsole;
+    public UserController(UserConsole userConsole) {
+        USER_CONSOLE = userConsole;
     }
 
     public void execute(String command) throws ErrorCommandException {
@@ -81,7 +79,6 @@ public class UserController implements UserCommandRepository{
         print("-= Welcome to CRUD-SYSTEM =-\n");
     }
 
-    //TODO
     public void printMenu() {
         print("MENU\n" +
                 "Use command to control SYSTEM:\n" +

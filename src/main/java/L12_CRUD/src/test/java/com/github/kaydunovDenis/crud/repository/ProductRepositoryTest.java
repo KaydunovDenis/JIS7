@@ -8,9 +8,9 @@ class ProductRepositoryTest {
     @Test
     void initialProductRepository() {
         ProductRepository productRepository = new ProductRepository();
-        Assertions.assertTrue(productRepository.getPRODUCTS().isEmpty());
+        Assertions.assertTrue(productRepository.products.isEmpty());
 
         productRepository.initialProductRepository();
-        Assertions.assertFalse(productRepository.getPRODUCTS().isEmpty());
+        Assertions.assertFalse(productRepository.products.isEmpty());
     }
 }

@@ -8,12 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserConsole {
-    final private UserController USER_CONTROLLER;
+    final private UserController USER_CONTROLLER = new UserController(this);
     private boolean isAlive = true;
-
-    public UserConsole(CrudService crudService) {
-        USER_CONTROLLER = new UserController(crudService, this);
-    }
 
     public void start() {
         String command;
@@ -29,10 +25,10 @@ public class UserConsole {
                 e.printStackTrace();
             }
         }
-        USER_CONTROLLER.print("EXIT");
     }
 
     public void stop() {
         isAlive = false;
+        USER_CONTROLLER.print("EXIT");
     }
 }

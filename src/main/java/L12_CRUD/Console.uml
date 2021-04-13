@@ -1,129 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>com.github.KaydunovDenis.crud.service.Console</OriginalElement>
+  <OriginalElement />
   <nodes>
-    <node x="0.0" y="521.0">com.github.KaydunovDenis.crud.service.Console</node>
-    <node x="293.58458646616543" y="635.0">com.github.KaydunovDenis.crud.service.UserService</node>
-    <node x="462.41701127819545" y="192.0">com.github.KaydunovDenis.crud.model.Product</node>
-    <node x="186.0" y="533.0">com.github.KaydunovDenis.crud.service.UserCommandRepository</node>
-    <node x="647.4170112781954" y="0.0">com.github.KaydunovDenis.crud.model.ProductCategory</node>
-    <node x="571.0893483709274" y="521.0">com.github.KaydunovDenis.crud.service.CrudService</node>
-    <node x="445.0" y="429.0">com.github.KaydunovDenis.crud.service.CrudServiceRepository</node>
-    <node x="413.41701127819545" y="0.0">com.github.KaydunovDenis.crud.model.SuperProduct</node>
-    <node x="681.0" y="417.0">com.github.KaydunovDenis.crud.repository.ProductRepository</node>
-    <node x="401.60097117794487" y="793.0">com.github.KaydunovDenis.crud.CrudAPP</node>
+    <node x="0.0" y="148.0">com.github.kaydunovDenis.crud.model.Product</node>
+    <node x="370.0" y="415.0">com.github.kaydunovDenis.crud.service.CrudService</node>
+    <node x="279.0" y="0.0">com.github.kaydunovDenis.crud.service.UserCommandRepository</node>
+    <node x="261.0" y="644.0">com.github.kaydunovDenis.crud.CrudAPP</node>
+    <node x="0.0" y="644.0">com.github.kaydunovDenis.crud.service.ErrorCommandException</node>
+    <node x="213.0" y="335.0">com.github.kaydunovDenis.crud.model.Currency</node>
+    <node x="391.5" y="335.0">com.github.kaydunovDenis.crud.service.CrudServiceRepository</node>
+    <node x="0.0" y="522.0">com.github.kaydunovDenis.crud.repository.ProductRepository</node>
+    <node x="248.0" y="522.0">com.github.kaydunovDenis.crud.uiConsole.UserConsole</node>
+    <node x="277.0" y="80.0">com.github.kaydunovDenis.crud.service.UserController</node>
+    <node x="44.0" y="0.0">com.github.kaydunovDenis.crud.model.SuperProduct</node>
+    <node x="0.0" y="335.0">com.github.kaydunovDenis.crud.model.ProductCategory</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.github.KaydunovDenis.crud.service.CrudService" target="com.github.KaydunovDenis.crud.model.Product">
-      <point x="-103.60000000000002" y="-27.0" />
-      <point x="596.9893483709272" y="501.0" />
-      <point x="434.5" y="501.0" />
-      <point x="434.5" y="397.0" />
-      <point x="545.2741541353383" y="397.0" />
-      <point x="-33.14285714285711" y="82.5" />
+    <edge source="com.github.kaydunovDenis.crud.model.Product" target="com.github.kaydunovDenis.crud.model.SuperProduct">
+      <point x="0.0" y="-71.0" />
+      <point x="0.0" y="49.0" />
     </edge>
-    <edge source="com.github.KaydunovDenis.crud.CrudAPP" target="com.github.KaydunovDenis.crud.service.CrudService">
-      <point x="41.60000000000002" y="-15.0" />
-      <point x="495.2009711779449" y="773.0" />
-      <point x="767.8083333333333" y="773.0" />
-      <point x="767.8083333333333" y="615.0" />
-      <point x="797.7143483709274" y="615.0" />
-      <point x="97.125" y="27.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.CrudServiceRepository" target="com.github.KaydunovDenis.crud.model.Product">
-      <point x="0.0" y="-15.0" />
-      <point x="553.0" y="397.0" />
-      <point x="578.4170112781954" y="397.0" />
-      <point x="0.0" y="82.5" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.repository.ProductRepository" target="com.github.KaydunovDenis.crud.model.Product">
-      <point x="-78.0" y="-27.0" />
-      <point x="707.0" y="397.0" />
-      <point x="611.5598684210526" y="397.0" />
-      <point x="33.14285714285711" y="82.5" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.UserService" target="com.github.KaydunovDenis.crud.service.CrudService">
-      <point x="50.28571428571428" y="-49.0" />
-      <point x="431.87030075187977" y="605.0" />
-      <point x="603.4643483709274" y="605.0" />
-      <point x="-97.125" y="27.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.model.Product" target="com.github.KaydunovDenis.crud.model.ProductCategory">
-      <point x="87.0" y="-82.5" />
-      <point x="665.4170112781954" y="172.0" />
-      <point x="731.4170112781954" y="172.0" />
-      <point x="0.0" y="71.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.CrudAPP" target="com.github.KaydunovDenis.crud.service.UserService">
-      <point x="-20.80000000000001" y="-15.0" />
-      <point x="432.8009711779449" y="763.0" />
-      <point x="337.58458646616543" y="763.0" />
-      <point x="-44.0" y="49.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.repository.ProductRepository" target="com.github.KaydunovDenis.crud.model.ProductCategory">
-      <point x="78.0" y="-27.0" />
-      <point x="863.0" y="397.0" />
-      <point x="855.6917293233082" y="397.0" />
-      <point x="855.6917293233082" y="172.0" />
-      <point x="787.4170112781954" y="172.0" />
-      <point x="56.00000000000003" y="71.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.model.Product" target="com.github.KaydunovDenis.crud.model.SuperProduct">
-      <point x="-87.0" y="-82.5" />
-      <point x="491.41701127819545" y="172.0" />
-      <point x="466.91701127819545" y="172.0" />
-      <point x="-53.5" y="71.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.UserService" target="com.github.KaydunovDenis.crud.model.Product">
-      <point x="25.14285714285711" y="-49.0" />
-      <point x="406.72744360902254" y="615.0" />
-      <point x="423.5" y="615.0" />
-      <point x="423.5" y="387.0" />
-      <point x="512.1312969924811" y="387.0" />
-      <point x="-66.28571428571433" y="82.5" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.CrudAPP" target="com.github.KaydunovDenis.crud.service.Console">
-      <point x="-41.599999999999966" y="-15.0" />
-      <point x="412.00097117794496" y="773.0" />
-      <point x="77.05034461152877" y="773.0" />
-      <point x="77.05034461152877" y="615.0" />
-      <point x="27.666666666666686" y="615.0" />
-      <point x="-55.333333333333314" y="27.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.UserService" target="com.github.KaydunovDenis.crud.service.UserCommandRepository">
-      <point x="-25.142857142857167" y="-49.0" />
-      <point x="356.4417293233083" y="595.0" />
-      <point x="294.0" y="595.0" />
+    <edge source="com.github.kaydunovDenis.crud.service.CrudService" target="com.github.kaydunovDenis.crud.service.CrudServiceRepository">
+      <point x="0.0" y="-27.0" />
       <point x="0.0" y="15.0" />
     </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.UserService" target="com.github.KaydunovDenis.crud.service.Console">
-      <point x="-75.4285714285715" y="-49.0" />
-      <point x="306.156015037594" y="615.0" />
-      <point x="83.0" y="615.0" />
-      <point x="0.0" y="27.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.CrudService" target="com.github.KaydunovDenis.crud.repository.ProductRepository">
-      <point x="0.0" y="-27.0" />
-      <point x="700.5893483709274" y="501.0" />
-      <point x="715.6666666666666" y="501.0" />
-      <point x="-69.33333333333337" y="27.0" />
-    </edge>
-    <edge source="com.github.KaydunovDenis.crud.service.CrudService" target="com.github.KaydunovDenis.crud.service.CrudServiceRepository">
-      <point x="-51.80000000000007" y="-27.0" />
-      <point x="648.7893483709272" y="491.0" />
-      <point x="553.0" y="491.0" />
+    <edge source="com.github.kaydunovDenis.crud.service.UserController" target="com.github.kaydunovDenis.crud.service.UserCommandRepository">
+      <point x="0.0" y="-49.0" />
       <point x="0.0" y="15.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6927639383155397" x="444.5" y="411.5" />
-  <SelectedNodes>
-    <node>com.github.KaydunovDenis.crud.CrudAPP</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="463.0" y="292.0" />
+  <SelectedNodes />
   <Categories>
-    <Category>Properties</Category>
     <Category>Fields</Category>
+    <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

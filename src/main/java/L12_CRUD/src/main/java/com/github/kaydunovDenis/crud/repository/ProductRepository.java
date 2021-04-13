@@ -6,7 +6,7 @@ import com.github.kaydunovDenis.crud.service.ErrorCommandException;
 import java.util.ArrayList;
 
 public class ProductRepository {
-    static private ArrayList<Product> products = new ArrayList<>();
+    public ArrayList<Product> products = new ArrayList<>();
 
     public void initialProductRepository() {
         Product product = new Product(new String[]{"Apple 10.0", "10000.0", "PHONE",
@@ -26,22 +26,7 @@ public class ProductRepository {
         PRODUCTS.put(12L, new Product(new String[]{"Agitator 2020 GameMaster 2.0", "91829.56", "COMPUTER"}));*/
     }
 
-    public ArrayList<Product> getPRODUCTS() {
-        return products;
-    }
-
-    public void put(Product product) {
+    public void add(Product product) {
         products.add(product);
     }
-
-    public Product get(Long ID) throws ErrorCommandException {
-        for (Product product : products
-             ) {
-            if (product.ID.equals(ID)) {
-                return product;
-            }
-        }
-        throw new ErrorCommandException("Продукт с указанным ID отсутствует в базе данных");
-    }
-
 }
