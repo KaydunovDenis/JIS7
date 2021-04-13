@@ -1,4 +1,4 @@
-package com.github.KaydunovDenis.crud.model;
+package com.github.kaydunovDenis.crud.model;
 
 public enum Currency {
     EUR("Евро"),

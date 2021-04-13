@@ -1,7 +1,7 @@
-package com.github.KaydunovDenis.crud.service;
+package com.github.kaydunovDenis.crud.service;
 
-import com.github.KaydunovDenis.crud.model.Product;
-import com.github.KaydunovDenis.crud.repository.ProductRepository;
+import com.github.kaydunovDenis.crud.model.Product;
+import com.github.kaydunovDenis.crud.repository.ProductRepository;
 
 /**
  * +добавление/
@@ -13,32 +13,33 @@ public class CrudService implements CrudServiceRepository {
 
     @Override
     public void create(Product product) {
-        PRODUCT_REPOSITORY.getPRODUCTS().put(product.ID, product);
+        PRODUCT_REPOSITORY.put(product);
     }
 
     @Override
     public String read(Long id) {
         try {
-            return PRODUCT_REPOSITORY.getPRODUCTS().get(id).toString();
+            return PRODUCT_REPOSITORY.getPRODUCTS().get(Math.toIntExact(id)).toString();
         } catch (NullPointerException e) {
             return "Продукт с указанным ID отсутствует";
         }
     }
 
     @Override
-    public void readALL() {
-        System.out.println(PRODUCT_REPOSITORY.toString());
+    public String readALL() {
+        return PRODUCT_REPOSITORY.toString();
     }
 
     @Override
     public void update() {
+
         //TODO
     }
 
     @Override
     public String delete(Long id) {
         try {
-            PRODUCT_REPOSITORY.getPRODUCTS().remove(id);
+            PRODUCT_REPOSITORY.getPRODUCTS().remove(Math.toIntExact(id));
             return "Удаление id = " + id + " успешно";
         } catch (IndexOutOfBoundsException e) {
             return "Продукт с указанным ID отсутствует";

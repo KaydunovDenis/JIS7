@@ -1,13 +1,13 @@
-package com.github.KaydunovDenis.crud.service;
+package com.github.kaydunovDenis.crud.service;
 
-import com.github.KaydunovDenis.crud.model.Product;
+import com.github.kaydunovDenis.crud.model.Product;
 
 public interface CrudServiceRepository {
     void create(Product product);
 
     String read(Long id);
 
-    void readALL();
+    String readALL();
 
     void update();
 
