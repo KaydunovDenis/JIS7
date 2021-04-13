@@ -10,8 +10,8 @@ public class Product extends SuperProduct {
     public BigDecimal regularPrice;
     public ProductCategory productCategory;
     public BigDecimal discount = new BigDecimal(0);
-    public String description = "";
-    final private static MathContext FILTER_SETTING = new MathContext(10, RoundingMode.HALF_UP);
+    public String description = " - ";
+    final private static MathContext SETTING_FILTER_BIGDECIMAL = new MathContext(10, RoundingMode.HALF_UP);
 
     /**
      * @param args <br> 1 Name: Apple
@@ -25,13 +25,15 @@ public class Product extends SuperProduct {
         int length = args.length;
         if (length >= 3) {
             name = args[0];
-            regularPrice = new BigDecimal(args[1]);
+            regularPrice = new BigDecimal(args[1], SETTING_FILTER_BIGDECIMAL);
             productCategory = ProductCategory.valueOf(args[2]);
         }
         if (length >= 4) {
-            discount = new BigDecimal(args[3], FILTER_SETTING);
+            //TODO add validate
+            discount = new BigDecimal(args[3], SETTING_FILTER_BIGDECIMAL);
         }
         if (length >= 5) {
+            //TODO args5 args6 args7 ......etc
             description = args[4];
             //Arrays.stream(args, 4, length).collect(Collectors.joining());
         }
@@ -55,15 +57,24 @@ public class Product extends SuperProduct {
                 "Regular price: " + regularPrice.toString() + " евро" + "\n" +
                 "Discount: " + discount + "%\n" +
                 "Actual price: " + getActualPrice() + " евро" + "\n" +
-                "Description: " + description;
+                "Description: " + description + "\n\n";
     }
 
     private String getActualPrice() {
         //todo исправить формулу расчета чтобы не было отрицательных символов
         //todo либо сделать валидацию входящих данных при создании продукта
+        validateDiscount();
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
         BigDecimal actualPrice = regularPrice.multiply(percentCost);
-        //TODO сделать красивый вывод актуальной цены без степеней
         return String.valueOf(actualPrice.doubleValue());
+    }
+
+    private void validateDiscount() {
+        if (discount.doubleValue() > 100) {
+            discount = new BigDecimal("100");
+        }
+        if (discount.doubleValue() > 0) {
+            discount = new BigDecimal("0");
+        }
     }
 }

@@ -11,6 +11,6 @@ public class CrudAPP {
         productRepository.initialProductRepository();
         System.out.println(productRepository.products.size() + " : size");
         Product product = productRepository.products.get(0);
-        System.out.println(product.toString());
+        System.out.println(productRepository.toString());
     }
 }
