@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserConsole {
-    final public static BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
     final private UserController USER_CONTROLLER;
     private boolean isAlive = true;
 
@@ -17,22 +16,18 @@ public class UserConsole {
     }
 
     public void start() {
-        String tempCommand;
+        String command;
+        USER_CONTROLLER.printHello();
         USER_CONTROLLER.printMenu();
         while (isAlive) {
-            try {
-                tempCommand = READER.readLine().trim();
-                USER_CONTROLLER.execute(tempCommand);
+            try (BufferedReader READER = new BufferedReader(new InputStreamReader(System.in))) {
+                command = READER.readLine();
+                USER_CONTROLLER.execute(command);
             } catch (ErrorCommandException e) {
                 USER_CONTROLLER.print(e.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            READER.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         USER_CONTROLLER.print("EXIT");
     }

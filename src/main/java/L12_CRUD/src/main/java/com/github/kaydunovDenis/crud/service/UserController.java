@@ -14,31 +14,23 @@ public class UserController implements UserCommandRepository{
         this.USER_CONSOLE = userConsole;
     }
 
-    public void execute(String temp) throws ErrorCommandException {
-        validateEmptyCommand(temp);
-        final String SPLIT_SYMBOL = "\\s";
-        String[] words = temp.split(SPLIT_SYMBOL);
-        if ("-c".equals(words[0])) {
-            create(words);
-        } else if ("-r".equals(words[0])) {
-            read(words);
-        } else if ("-ra".equals(words[0])) {
-            readALL(words);
-        } else if ("-u".equals(words[0])) {
-            update(words);
-        } else if ("-d".equals(words[0])) {
-            delete(words);
-        } else if ("-menu".equals(words[0])) {
-            printMenu();
-        } else if ("-exit".equals(words[0])) {
-            USER_CONSOLE.stop();
-        } else {
-            throw new ErrorCommandException();
+    public void execute(String command) throws ErrorCommandException {
+        validateEmptyCommand(command);
+        String[] words = command.trim().split("\\s");
+        switch (words[0]) {
+            case "-c" -> create(words);
+            case "-r" -> read(words);
+            case "-ra" -> readALL(words);
+            case "-u" -> update(words);
+            case "-d" -> delete(words);
+            case "-menu" -> printMenu();
+            case "-exit" -> USER_CONSOLE.stop();
+            default -> throw new ErrorCommandException();
         }
     }
 
-    private void validateEmptyCommand(String temp) throws ErrorCommandException {
-        if (temp.equals("") || temp.isEmpty()) {
+    private void validateEmptyCommand(String command) throws ErrorCommandException {
+        if (command.equals("") || command.isEmpty()) {
             throw new ErrorCommandException();
         }
     }
@@ -85,9 +77,13 @@ public class UserController implements UserCommandRepository{
         System.out.println("SYSTEM:: " + text + "\n");
     }
 
+    public void printHello() {
+        print("-= Welcome to CRUD-SYSTEM =-\n");
+    }
+
     //TODO
     public void printMenu() {
-        print("-= Welcome CRUD-SYSTEM! =-\n" +//TODO этого текста здесь не должно быть вынести, и заменить на MENU
+        print("MENU\n" +
                 "Use command to control SYSTEM:\n" +
                 "-c : create product\n" +
                 "-r Х : read product where id=X\n" +
