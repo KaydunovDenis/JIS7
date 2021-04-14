@@ -2,15 +2,15 @@ package com.github.kaydunovDenis.crud.service;
 
 import com.github.kaydunovDenis.crud.model.Product;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CrudServiceTest {
     private static CrudService crudService;
     final Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
 
-    @BeforeAll
-    static void beforeAll() {
+    @BeforeEach
+    void beforeAll() {
         crudService = new CrudService();
     }
 
@@ -32,6 +32,10 @@ class CrudServiceTest {
         crudService.create(testProduct);
         Product result = crudService.getPRODUCT_REPOSITORY().products.get(0);
         Assertions.assertEquals(testProduct, result);
+
+        String textExpect = testProduct.toString();
+        String textResult = crudService.read(result.ID);
+        Assertions.assertEquals(textExpect, textResult);
     }
 
     @Test
@@ -41,10 +45,16 @@ class CrudServiceTest {
 
     @Test
     void delete() {
-        crudService.create(testProduct);
-        boolean expected = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
-        Assertions.assertTrue(expected);
+        String textExpect = testProduct.ID + CrudService.MESSAGE_NOT_READ;
+        String textResult = crudService.delete(testProduct.ID);
+        Assertions.assertEquals(textExpect, textResult);
 
-        //TODO допилить тест на проверку после удаления
+        crudService.create(testProduct);
+        boolean expect = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
+        Assertions.assertTrue(expect);
+
+        crudService.delete(testProduct.ID);
+        expect = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
+        Assertions.assertFalse(expect);
     }
 }

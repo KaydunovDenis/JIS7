@@ -9,8 +9,8 @@ public class CrudAPP {
         CrudService crudService = new CrudService();
         ProductRepository productRepository = crudService.getPRODUCT_REPOSITORY();
         productRepository.initialProductRepository();
-        System.out.println(productRepository.products.size() + " : size");
-        Product product = productRepository.products.get(0);
         System.out.println(productRepository.toString());
+
+        System.out.println(crudService.delete(1L));
     }
 }

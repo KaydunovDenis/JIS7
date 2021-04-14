@@ -23,10 +23,6 @@ public class ProductRepository {
         products.add(new Product(new String[]{"Agitator 2020 GameMaster 2.0", "91829.56", "COMPUTER"}));
     }
 
-    public void add(Product product) {
-        products.add(product);
-    }
-
     @Override
     public String toString() {
         String result = "";
