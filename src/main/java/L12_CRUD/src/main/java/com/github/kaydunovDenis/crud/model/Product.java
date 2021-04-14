@@ -25,12 +25,13 @@ public class Product extends SuperProduct {
         int length = args.length;
         if (length >= 3) {
             name = args[0];
+            //todo write walidate
             regularPrice = new BigDecimal(args[1], SETTING_FILTER_BIGDECIMAL);
+            //todo wriy
             productCategory = ProductCategory.valueOf(args[2]);
         }
         if (length >= 4) {
-            //TODO add validate
-            discount = new BigDecimal(args[3], SETTING_FILTER_BIGDECIMAL);
+            validateAndCreateDiscount(args[3]);
         }
         if (length >= 5) {
             //TODO args5 args6 args7 ......etc
@@ -63,13 +64,13 @@ public class Product extends SuperProduct {
     private String getActualPrice() {
         //todo исправить формулу расчета чтобы не было отрицательных символов
         //todo либо сделать валидацию входящих данных при создании продукта
-        validateDiscount();
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
         BigDecimal actualPrice = regularPrice.multiply(percentCost);
         return String.valueOf(actualPrice.doubleValue());
     }
 
-    private void validateDiscount() {
+    private void validateAndCreateDiscount(String textDiscount) {
+        new BigDecimal(textDiscount, SETTING_FILTER_BIGDECIMAL);
         if (discount.doubleValue() > 100) {
             discount = new BigDecimal("100");
         }

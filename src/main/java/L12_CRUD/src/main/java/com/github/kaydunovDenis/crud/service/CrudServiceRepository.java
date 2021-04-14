@@ -5,9 +5,9 @@ import com.github.kaydunovDenis.crud.model.Product;
 public interface CrudServiceRepository {
     String create(Product product);
 
-    String read(Long id);
+    String read(Long id) throws ErrorCommandException;
 
-    String readALL();
+    String readALL() throws ErrorCommandException;
 
     String update(Long idUpdate, Product updateProduct);
 

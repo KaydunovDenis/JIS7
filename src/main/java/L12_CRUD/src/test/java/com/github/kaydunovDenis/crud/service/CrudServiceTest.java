@@ -25,7 +25,7 @@ class CrudServiceTest {
     }
 
     @Test
-    void read() {
+    void read() throws ErrorCommandException {
         int sizeActual = crudService.getPRODUCT_REPOSITORY().products.size();
         Assertions.assertEquals(0, sizeActual);
 

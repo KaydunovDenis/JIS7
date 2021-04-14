@@ -6,7 +6,7 @@ import com.github.kaydunovDenis.crud.uiConsole.UserConsole;
 public class UserController implements UserCommandRepository{
     final private CrudService CRUD_SERVICE = new CrudService();
     final private UserConsole USER_CONSOLE;
-    final int POSITION_ID_IN_COMMAND = 1;
+    final int POSITION_ID_IN_COMMAND = 0;
 
     public UserController(UserConsole userConsole) {
         USER_CONSOLE = userConsole;
@@ -15,12 +15,13 @@ public class UserController implements UserCommandRepository{
     public void execute(String command) throws ErrorCommandException {
         validateEmptyCommand(command);
         String[] words = command.trim().split("\\s");
+        String[] shortComand = truncateStartOfCommand(words);
         switch (words[0]) {
-            case "-c" -> create(words);
-            case "-r" -> read(words);
-            case "-ra" -> readALL(words);
-            case "-u" -> update(words);
-            case "-d" -> delete(words);
+            case "-c" -> create(shortComand);
+            case "-r" -> read(shortComand);
+            case "-ra" -> readALL();
+            case "-u" -> update(shortComand);
+            case "-d" -> delete(shortComand);
             case "-menu" -> printMenu();
             case "-exit" -> USER_CONSOLE.stop();
             default -> throw new ErrorCommandException();
@@ -34,42 +35,45 @@ public class UserController implements UserCommandRepository{
     }
 
     @Override
-    public void create(String[] command) throws ErrorCommandException {
-        try {
-            Product product = new Product(command);
-            CRUD_SERVICE.create(product);
-        } catch (IllegalArgumentException e) {
-            throw new ErrorCommandException();
-        }
+    public void create(String[] command) {
+        CRUD_SERVICE.create(new Product(command));
     }
 
     @Override
     public void read(String[] command) throws ErrorCommandException {
-        if (command.length != 2) throw new ErrorCommandException();
         Long idRead = idValidate(command[POSITION_ID_IN_COMMAND]);
-        CRUD_SERVICE.read(idRead);
+        USER_CONSOLE.print(CRUD_SERVICE.read(idRead));
     }
 
     @Override
-    public void readALL(String[] command) throws ErrorCommandException {
-        if (command.length == 1) {
-            print(CRUD_SERVICE.readALL());
-        } else throw new ErrorCommandException();
+    public void readALL() throws ErrorCommandException {
+        USER_CONSOLE.print(CRUD_SERVICE.readALL());
     }
 
     @Override
     public void update(String[] command) throws ErrorCommandException {
         Long idUpdate = idValidate(command[0]);
-        Product productUpdate = createNewProductFromUpdate(command);
+        Product productUpdate = new Product(truncateStartOfCommand(command));
         CRUD_SERVICE.update(idUpdate, productUpdate);
     }
 
-    private Product createNewProductFromUpdate(String[] command) {
-        String[] dataProduct = new String[command.length - 1];
-        if (command.length - 1 >= 0) {
-            System.arraycopy(command, 1, dataProduct, 0, command.length - 1);
+    @Override
+    public void delete(String[] command) throws ErrorCommandException {
+        if (command.length == 1) {
+            USER_CONSOLE.print(CRUD_SERVICE.delete(Long.parseLong(command[POSITION_ID_IN_COMMAND])));
+        } else throw new ErrorCommandException();
+    }
+
+    public void printHello() {
+        USER_CONSOLE.print("-= Welcome to CRUD-SYSTEM =-");
+    }
+
+    private String[] truncateStartOfCommand(String[] fullCommand) {
+        String[] dataProduct = new String[fullCommand.length - 1];
+        if (fullCommand.length - 1 >= 0) {
+            System.arraycopy(fullCommand, 1, dataProduct, 0, fullCommand.length - 1);
         }
-        return new Product(dataProduct);
+        return dataProduct;
     }
 
     private Long idValidate(String textLong) throws ErrorCommandException {
@@ -84,23 +88,8 @@ public class UserController implements UserCommandRepository{
         }
     }
 
-    @Override
-    public void delete(String[] command) throws ErrorCommandException {
-        if (command.length == 2) {
-            print(CRUD_SERVICE.delete(Long.parseLong(command[POSITION_ID_IN_COMMAND])));
-        } else throw new ErrorCommandException();
-    }
-
-    public void print(String text) {
-        System.out.println("SYSTEM:: " + text + "\n");
-    }
-
-    public void printHello() {
-        print("-= Welcome to CRUD-SYSTEM =-\n");
-    }
-
     public void printMenu() {
-        print("MENU\n" +
+        USER_CONSOLE.print("MENU\n" +
                 "Use command to control SYSTEM:\n" +
                 "-c : create product\n" +
                 "-r Х : read product where id=X\n" +

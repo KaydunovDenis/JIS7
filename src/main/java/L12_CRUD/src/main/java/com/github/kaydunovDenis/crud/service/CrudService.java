@@ -16,8 +16,9 @@ public class CrudService implements CrudServiceRepository {
     final private ProductRepository PRODUCT_REPOSITORY = new ProductRepository();
     final public static String MESSAGE_CREATE = " has add in database successfully.";
     final public static String MESSAGE_NOT_READ = " - this ID not found in database.";
-    final public static  String MESSAGE_UPDATE = " - this product has update successfully.";
-    final public static  String MESSAGE_DELETE = " has delete from database successfully.";
+    final public static String MESSAGE_UPDATE = " - this product has update successfully.";
+    final public static String MESSAGE_DELETE = " has delete from database successfully.";
+    final public static String MESSAGE_DATABASE_EMPY = "Database is empty.";
 
     @Override
     public String create(Product product) {
@@ -26,7 +27,8 @@ public class CrudService implements CrudServiceRepository {
     }
 
     @Override
-    public String read(Long idRead) {
+    public String read(Long idRead) throws ErrorCommandException {
+        validateEmpyDatabse();
         for (Product product : PRODUCT_REPOSITORY.products) {
             if (product.ID.equals(idRead)) {
                 return product.toString();
@@ -36,12 +38,19 @@ public class CrudService implements CrudServiceRepository {
     }
 
     @Override
-    public String readALL() {
+    public String readALL() throws ErrorCommandException {
+        validateEmpyDatabse();
         return PRODUCT_REPOSITORY.toString();
     }
 
+    private void validateEmpyDatabse() throws ErrorCommandException {
+        if (PRODUCT_REPOSITORY.products.size() <= 0) {
+            throw new ErrorCommandException(MESSAGE_DATABASE_EMPY);
+        }
+    }
+
     /**
-     * @param idUpdate - number Id product, which will update
+     * @param idUpdate      - number Id product, which will update
      * @param updateProduct - data Product, which will replace data old product
      * @return text rapport about the success of operation
      */
