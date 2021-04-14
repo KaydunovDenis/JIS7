@@ -45,9 +45,9 @@ public class UserController implements UserCommandRepository{
 
     @Override
     public void read(String[] command) throws ErrorCommandException {
-        if (command.length == 2) {
-            print(CRUD_SERVICE.read(Long.parseLong(command[POSITION_ID_IN_COMMAND])));
-        } else throw new ErrorCommandException();
+        if (command.length != 2) throw new ErrorCommandException();
+        Long idRead = idValidate(command[POSITION_ID_IN_COMMAND]);
+        CRUD_SERVICE.read(idRead);
     }
 
     @Override
@@ -59,9 +59,29 @@ public class UserController implements UserCommandRepository{
 
     @Override
     public void update(String[] command) throws ErrorCommandException {
-        if (command.length == 1) {
-            CRUD_SERVICE.update();
-        } else throw new ErrorCommandException();
+        Long idUpdate = idValidate(command[0]);
+        Product productUpdate = createNewProductFromUpdate(command);
+        CRUD_SERVICE.update(idUpdate, productUpdate);
+    }
+
+    private Product createNewProductFromUpdate(String[] command) {
+        String[] dataProduct = new String[command.length - 1];
+        if (command.length - 1 >= 0) {
+            System.arraycopy(command, 1, dataProduct, 0, command.length - 1);
+        }
+        return new Product(dataProduct);
+    }
+
+    private Long idValidate(String textLong) throws ErrorCommandException {
+        try {
+            long id  = Long.parseLong(textLong);
+            if (id <= 0) {
+                throw new ErrorCommandException("ID must be >0");
+            }
+            return id;
+        } catch (NumberFormatException exception) {
+            throw new ErrorCommandException("Your command include invalid product id.");
+        }
     }
 
     @Override

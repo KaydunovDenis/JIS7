@@ -41,11 +41,11 @@ public class Product extends SuperProduct {
 
     /**
      * @return Product information:
-     * <br>ID: 123
+     * <br>ID: 12
      * <br>Name: Apple
-     * <br>Regular price: 0.40
-     * <br>Discount: 25%
-     * <br>Actual price: 0.30
+     * <br>Regular price: 100
+     * <br>Discount: 0,25 = 25%
+     * <br>Actual price: 75.00
      * <br>Description: description
      */
     @Override

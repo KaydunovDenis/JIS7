@@ -40,6 +40,16 @@ class CrudServiceTest {
 
     @Test
     void update() {
+        crudService.create(testProduct);
+        Product dataUpdeteProduct = new Product(new String[]{"New Name", "100", "PHONE", "0.2"});
+        Product resultProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Assertions.assertEquals(testProduct, resultProduct);
+
+        crudService.update(testProduct.ID, dataUpdeteProduct);
+        resultProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Assertions.assertNotEquals(testProduct, resultProduct);
+        Assertions.assertEquals(dataUpdeteProduct, resultProduct);
+
         //TODO
     }
 
