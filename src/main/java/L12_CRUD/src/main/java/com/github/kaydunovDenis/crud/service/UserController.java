@@ -15,22 +15,16 @@ public class UserController implements UserCommandRepository{
     public void execute(String command) throws ErrorCommandException {
         validateEmptyCommand(command);
         String[] words = command.trim().split("\\s");
-        String[] shortComand = truncateStartOfCommand(words);
+        String[] shortCommand = truncateStartOfCommand(words);
         switch (words[0]) {
-            case "-c" -> create(shortComand);
-            case "-r" -> read(shortComand);
+            case "-c" -> create(shortCommand);
+            case "-r" -> read(shortCommand);
             case "-ra" -> readALL();
-            case "-u" -> update(shortComand);
-            case "-d" -> delete(shortComand);
-            case "-menu" -> printMenu();
-            case "-exit" -> USER_CONSOLE.stop();
+            case "-u" -> update(shortCommand);
+            case "-d" -> delete(shortCommand[0]);
+            case "-menu" -> USER_CONSOLE.printMenu();
+            case "-exit" -> USER_CONSOLE.disable();
             default -> throw new ErrorCommandException();
-        }
-    }
-
-    private void validateEmptyCommand(String command) throws ErrorCommandException {
-        if (command.equals("") || command.isEmpty()) {
-            throw new ErrorCommandException();
         }
     }
 
@@ -50,6 +44,19 @@ public class UserController implements UserCommandRepository{
         USER_CONSOLE.print(CRUD_SERVICE.readALL());
     }
 
+    /**
+     * @param command []
+     * <br> 0 idUpdate: 1 (number Id product, which will update)
+     * <br> 1 Name: Apple
+     * <br> 2 Regular price: 256.45
+     * <br> 3 Product category: PHONE
+     * <br> 4 Discount: 0.25
+     * <br> 5 Description: some text
+     *
+     * <br> command = idUpdate + dataUpdateProduct
+     * <br> dataUpdateProduct = name + Regular price + category + Discount + Description
+     * <br> dataUpdateProduct - data Product, which will replace data old product
+     */
     @Override
     public void update(String[] command) throws ErrorCommandException {
         Long idUpdate = idValidate(command[0]);
@@ -57,26 +64,30 @@ public class UserController implements UserCommandRepository{
         CRUD_SERVICE.update(idUpdate, productUpdate);
     }
 
+    /**
+     * @param idDeleteProduct - number Id product, which will delete
+     */
     @Override
-    public void delete(String[] command) throws ErrorCommandException {
-        if (command.length == 1) {
-            USER_CONSOLE.print(CRUD_SERVICE.delete(Long.parseLong(command[POSITION_ID_IN_COMMAND])));
-        } else throw new ErrorCommandException();
+    public void delete(String idDeleteProduct) throws ErrorCommandException {
+        idValidate(idDeleteProduct);
+        USER_CONSOLE.print(CRUD_SERVICE.delete(Long.parseLong(idDeleteProduct)));
     }
 
-    public void printHello() {
-        USER_CONSOLE.print("-= Welcome to CRUD-SYSTEM =-");
-    }
-
-    private String[] truncateStartOfCommand(String[] fullCommand) {
-        String[] dataProduct = new String[fullCommand.length - 1];
-        if (fullCommand.length - 1 >= 0) {
-            System.arraycopy(fullCommand, 1, dataProduct, 0, fullCommand.length - 1);
+    public static void validateEmptyCommand(String command) throws ErrorCommandException {
+        if (command.equals("") || command.isEmpty()) {
+            throw new ErrorCommandException();
         }
-        return dataProduct;
     }
 
-    private Long idValidate(String textLong) throws ErrorCommandException {
+    public static String[] truncateStartOfCommand(String[] fullCommand) {
+        String[] textDataProduct = new String[fullCommand.length - 1];
+        if (fullCommand.length - 1 >= 0) {
+            System.arraycopy(fullCommand, 1, textDataProduct, 0, fullCommand.length - 1);
+        }
+        return textDataProduct;
+    }
+
+    public static Long idValidate(String textLong) throws ErrorCommandException {
         try {
             long id  = Long.parseLong(textLong);
             if (id <= 0) {
@@ -88,16 +99,7 @@ public class UserController implements UserCommandRepository{
         }
     }
 
-    public void printMenu() {
-        USER_CONSOLE.print("MENU\n" +
-                "Use command to control SYSTEM:\n" +
-                "-c : create product\n" +
-                "-r Х : read product where id=X\n" +
-                "-ra : read all product from database\n" +
-                "-u : update the product on id\n" +
-                "-d : delete product from data base\n" +
-                "-menu : show the menu of program\n" +
-                "-exit : exit from the program"
-        );
+    public CrudService getCRUD_SERVICE() {
+        return CRUD_SERVICE;
     }
 }

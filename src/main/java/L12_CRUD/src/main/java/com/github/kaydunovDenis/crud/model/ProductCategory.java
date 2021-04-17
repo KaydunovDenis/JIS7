@@ -12,6 +12,15 @@ public enum ProductCategory {
         this.category = category;
     }
 
+    public static boolean contains(String test) {
+        for (ProductCategory productCategory : ProductCategory.values()) {
+            if (productCategory.name().equals(test)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return category;

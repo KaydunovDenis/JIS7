@@ -1,5 +1,7 @@
 package com.github.kaydunovDenis.crud.model;
 
+import com.github.kaydunovDenis.crud.service.ErrorCommandException;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -12,6 +14,12 @@ public class Product extends SuperProduct {
     public BigDecimal discount = new BigDecimal(0);
     public String description = " - ";
     final private static MathContext SETTING_FILTER_BIGDECIMAL = new MathContext(10, RoundingMode.HALF_UP);
+    final String MESSAGE_ERROR_NUMBER =
+            " Error format input it number. Object don't create.\n" +
+            "You need to enter the command with right number.\n"+
+            "The number must be represented by a fractional number between 0 and 1. \n"+
+            "Use a period as a separator.";
+
 
     /**
      * @param args <br> 1 Name: Apple
@@ -23,20 +31,36 @@ public class Product extends SuperProduct {
      */
     public Product(String[] args) {
         int length = args.length;
-        if (length >= 3) {
-            name = args[0];
-            //todo write walidate
-            regularPrice = new BigDecimal(args[1], SETTING_FILTER_BIGDECIMAL);
-            //todo wriy
-            productCategory = ProductCategory.valueOf(args[2]);
+        try {
+            if (length >= 3) {
+                name = args[0];
+                validatePrice(args[1]);
+                validateCategory(args[2]);
+            }
+            if (length >= 4) {
+                validateAndCreateDiscount(args[3]);
+            }
+            if (length >= 5) {
+                //TODO args5 args6 args7 ......etc
+                description = args[4];
+                //Arrays.stream(args, 4, length).collect(Collectors.joining());
+            }
+        } catch (ErrorCommandException e) {
+            //todo
         }
-        if (length >= 4) {
-            validateAndCreateDiscount(args[3]);
-        }
-        if (length >= 5) {
-            //TODO args5 args6 args7 ......etc
-            description = args[4];
-            //Arrays.stream(args, 4, length).collect(Collectors.joining());
+    }
+
+    private void validateCategory(String category) throws ErrorCommandException {
+        if (ProductCategory.contains(category)) {
+            productCategory = ProductCategory.valueOf(category);
+        } else throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
+    }
+
+    private void validatePrice(String textPrice) throws ErrorCommandException {
+        try {
+            regularPrice = new BigDecimal(textPrice, SETTING_FILTER_BIGDECIMAL);
+        } catch (NumberFormatException exception) {
+            throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
         }
     }
 
@@ -51,7 +75,6 @@ public class Product extends SuperProduct {
      */
     @Override
     public String toString() {
-        //String textRegularPrice = String.valueOf(regularPrice.setScale(2, RoundingMode.HALF_UP).doubleValue());
         return "Product information:\n" +
                 "ID: " + ID + '\n' +
                 "Name: " + productCategory.toString() + " " + name + '\n' +
@@ -62,19 +85,21 @@ public class Product extends SuperProduct {
     }
 
     private String getActualPrice() {
-        //todo исправить формулу расчета чтобы не было отрицательных символов
-        //todo либо сделать валидацию входящих данных при создании продукта
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
         BigDecimal actualPrice = regularPrice.multiply(percentCost);
         return String.valueOf(actualPrice.doubleValue());
     }
 
-    private void validateAndCreateDiscount(String textDiscount) {
-        new BigDecimal(textDiscount, SETTING_FILTER_BIGDECIMAL);
-        if (discount.doubleValue() > 100) {
-            discount = new BigDecimal("100");
+    public void validateAndCreateDiscount(String textDiscount) throws ErrorCommandException {
+        try {
+            discount = new BigDecimal(textDiscount, SETTING_FILTER_BIGDECIMAL);
+        } catch (NumberFormatException e) {
+            throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
         }
-        if (discount.doubleValue() > 0) {
+        if (discount.doubleValue() > 1) {
+            discount = new BigDecimal("1");
+        }
+        if (discount.doubleValue() < 0) {
             discount = new BigDecimal("0");
         }
     }

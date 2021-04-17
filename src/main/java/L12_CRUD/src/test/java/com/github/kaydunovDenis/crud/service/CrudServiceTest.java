@@ -30,34 +30,34 @@ class CrudServiceTest {
         Assertions.assertEquals(0, sizeActual);
 
         crudService.create(testProduct);
-        Product result = crudService.getPRODUCT_REPOSITORY().products.get(0);
-        Assertions.assertEquals(testProduct, result);
+        Product actual = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Assertions.assertEquals(testProduct, actual);
 
-        String textExpect = testProduct.toString();
-        String textResult = crudService.read(result.ID);
-        Assertions.assertEquals(textExpect, textResult);
+        String expectedText = testProduct.toString();
+        String actualText = crudService.read(actual.ID);
+        Assertions.assertEquals(expectedText, actualText);
     }
 
     @Test
     void update() {
         crudService.create(testProduct);
         Product dataUpdeteProduct = new Product(new String[]{"New Name", "100", "PHONE", "0.2"});
-        Product resultProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
-        Assertions.assertEquals(testProduct, resultProduct);
+        Product actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Assertions.assertEquals(testProduct, actualProduct);
 
         crudService.update(testProduct.ID, dataUpdeteProduct);
-        resultProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
-        Assertions.assertNotEquals(testProduct, resultProduct);
-        Assertions.assertEquals(dataUpdeteProduct, resultProduct);
+        actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Assertions.assertNotEquals(testProduct, actualProduct);
+        Assertions.assertEquals(dataUpdeteProduct, actualProduct);
 
         //TODO
     }
 
     @Test
     void delete() {
-        String textExpect = testProduct.ID + CrudService.MESSAGE_NOT_READ;
-        String textResult = crudService.delete(testProduct.ID);
-        Assertions.assertEquals(textExpect, textResult);
+        String expectedText = testProduct.ID + CrudService.MESSAGE_NOT_READ;
+        String actualText = crudService.delete(testProduct.ID);
+        Assertions.assertEquals(expectedText, actualText);
 
         crudService.create(testProduct);
         boolean expect = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
