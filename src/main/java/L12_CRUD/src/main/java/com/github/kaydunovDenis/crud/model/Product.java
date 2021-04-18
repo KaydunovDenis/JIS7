@@ -6,13 +6,15 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public class Product extends SuperProduct {
-    //ID
-    //Name
+public class Product {
+    public Long ID;
+    public String name;
     public BigDecimal regularPrice;
     public ProductCategory productCategory;
     public BigDecimal discount = new BigDecimal(0);
     public String description = " - ";
+
+    private static Long counterID = 1L;
     final private static MathContext SETTING_FILTER_BIGDECIMAL = new MathContext(10, RoundingMode.HALF_UP);
     final String MESSAGE_ERROR_NUMBER =
             " Error format input it number. Object don't create.\n" +
@@ -48,6 +50,7 @@ public class Product extends SuperProduct {
         } catch (ErrorCommandException e) {
             //todo
         }
+        ID = counterID++;
     }
 
     private void validateCategory(String category) throws ErrorCommandException {

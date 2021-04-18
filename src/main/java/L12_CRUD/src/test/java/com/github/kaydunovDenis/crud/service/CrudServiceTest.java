@@ -10,7 +10,7 @@ class CrudServiceTest {
     final Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
 
     @BeforeEach
-    void beforeAll() {
+    void beforeEach() {
         crudService = new CrudService();
     }
 

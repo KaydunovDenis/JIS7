@@ -5,15 +5,17 @@ import com.github.kaydunovDenis.crud.uiConsole.UserConsole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class UserControllerTest {
     private static UserController userController;
-    final Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
+    Product testProduct;
 
     @BeforeEach
-    void beforeAll() {
+    void beforeEach() {
         userController = new UserController(new UserConsole());
+        testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
         userController.getCRUD_SERVICE().create(testProduct);
     }
 
@@ -63,8 +65,7 @@ class UserControllerTest {
         }
         expect = 0;
         actual = userController.getCRUD_SERVICE().getPRODUCT_REPOSITORY().products.size();
-        assertEquals(expect, actual);
-
+        assertNotEquals(expect, actual);
     }
 
     @Test

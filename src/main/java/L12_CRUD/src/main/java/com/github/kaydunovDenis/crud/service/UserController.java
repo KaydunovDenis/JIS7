@@ -69,8 +69,8 @@ public class UserController implements UserCommandRepository{
      */
     @Override
     public void delete(String idDeleteProduct) throws ErrorCommandException {
-        idValidate(idDeleteProduct);
-        USER_CONSOLE.print(CRUD_SERVICE.delete(Long.parseLong(idDeleteProduct)));
+        Long idDelete = idValidate(idDeleteProduct);
+        USER_CONSOLE.print(CRUD_SERVICE.delete(idDelete));
     }
 
     public static void validateEmptyCommand(String command) throws ErrorCommandException {
