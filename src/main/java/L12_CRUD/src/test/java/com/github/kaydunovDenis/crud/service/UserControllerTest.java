@@ -10,12 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class UserControllerTest {
     private static UserController userController;
-    Product testProduct;
+    final private Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
 
     @BeforeEach
     void beforeEach() {
         userController = new UserController(new UserConsole());
-        testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
         userController.getCRUD_SERVICE().create(testProduct);
     }
 

@@ -72,7 +72,7 @@ public class Product {
      * <br>ID: 12
      * <br>Name: Apple
      * <br>Regular price: 100
-     * <br>Discount: 0,25 = 25%
+     * <br>Discount: 25%  (input: 0.25)
      * <br>Actual price: 75.00
      * <br>Description: description
      */
@@ -82,9 +82,13 @@ public class Product {
                 "ID: " + ID + '\n' +
                 "Name: " + productCategory.toString() + " " + name + '\n' +
                 "Regular price: " + regularPrice.toString() + " евро" + "\n" +
-                "Discount: " + discount + "%\n" +
+                "Discount: " + getDiscountForToString() + "%\n" +
                 "Actual price: " + getActualPrice() + " евро" + "\n" +
                 "Description: " + description + "\n\n";
+    }
+
+    private String getDiscountForToString() {
+        return discount.multiply(BigDecimal.valueOf(100)).toString();
     }
 
     private String getActualPrice() {

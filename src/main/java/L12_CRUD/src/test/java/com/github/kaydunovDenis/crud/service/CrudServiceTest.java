@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 class CrudServiceTest {
     private static CrudService crudService;
     final Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
+    final Long ID_FIST_PRODUCT = testProduct.ID;
 
     @BeforeEach
     void beforeEach() {
@@ -16,11 +17,11 @@ class CrudServiceTest {
 
     @Test
     void create() {
-        boolean expected = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
+        boolean expected = crudService.getPRODUCT_REPOSITORY().products.containsValue(testProduct);
         Assertions.assertFalse(expected);
 
         crudService.create(testProduct);
-        expected = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
+        expected = crudService.getPRODUCT_REPOSITORY().products.containsValue(testProduct);
         Assertions.assertTrue(expected);
     }
 
@@ -30,7 +31,7 @@ class CrudServiceTest {
         Assertions.assertEquals(0, sizeActual);
 
         crudService.create(testProduct);
-        Product actual = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Product actual = crudService.getPRODUCT_REPOSITORY().products.get(ID_FIST_PRODUCT);
         Assertions.assertEquals(testProduct, actual);
 
         String expectedText = testProduct.toString();
@@ -41,14 +42,14 @@ class CrudServiceTest {
     @Test
     void update() {
         crudService.create(testProduct);
-        Product dataUpdeteProduct = new Product(new String[]{"New Name", "100", "PHONE", "0.2"});
-        Product actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        Product dataUpdateProduct = new Product(new String[]{"New Name", "100", "PHONE", "0.2"});
+        Product actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(ID_FIST_PRODUCT);
         Assertions.assertEquals(testProduct, actualProduct);
 
-        crudService.update(testProduct.ID, dataUpdeteProduct);
-        actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(0);
+        crudService.update(testProduct.ID, dataUpdateProduct);
+        actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(ID_FIST_PRODUCT);
         Assertions.assertNotEquals(testProduct, actualProduct);
-        Assertions.assertEquals(dataUpdeteProduct, actualProduct);
+        Assertions.assertEquals(dataUpdateProduct, actualProduct);
 
         //TODO
     }
@@ -60,11 +61,11 @@ class CrudServiceTest {
         Assertions.assertEquals(expectedText, actualText);
 
         crudService.create(testProduct);
-        boolean expect = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
+        boolean expect = crudService.getPRODUCT_REPOSITORY().products.containsValue(testProduct);
         Assertions.assertTrue(expect);
 
         crudService.delete(testProduct.ID);
-        expect = crudService.getPRODUCT_REPOSITORY().products.contains(testProduct);
+        expect = crudService.getPRODUCT_REPOSITORY().products.containsValue(testProduct);
         Assertions.assertFalse(expect);
     }
 }

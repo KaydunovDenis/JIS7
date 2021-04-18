@@ -3,6 +3,8 @@ package com.github.kaydunovDenis.crud.service;
 import com.github.kaydunovDenis.crud.model.Product;
 import com.github.kaydunovDenis.crud.repository.ProductRepository;
 
+import java.util.Map;
+
 /**
  * The service complete next functions with products in a database:
  * - create/write
@@ -18,20 +20,20 @@ public class CrudService implements CrudServiceRepository {
     final public static String MESSAGE_NOT_READ = " - this ID not found in database.";
     final public static String MESSAGE_UPDATE = " - this product has update successfully.";
     final public static String MESSAGE_DELETE = " has delete from database successfully.";
-    final public static String MESSAGE_DATABASE_EMPY = "Database is empty.";
+    final public static String MESSAGE_DATABASE_EMPTY = "Database is empty.";
 
     @Override
     public String create(Product product) {
-        PRODUCT_REPOSITORY.products.add(product);
+        PRODUCT_REPOSITORY.put(product);
         return product.name + MESSAGE_CREATE;
     }
 
     @Override
     public String read(Long idRead) throws ErrorCommandException {
-        validateEmpyDatabse();
-        for (Product product : PRODUCT_REPOSITORY.products) {
-            if (product.ID.equals(idRead)) {
-                return product.toString();
+        validateEmptyDatabase();
+        for (Map.Entry<Long, Product> entry : PRODUCT_REPOSITORY.products.entrySet()) {
+            if (entry.getKey().equals(idRead)) {
+                return entry.getValue().toString();
             }
         }
         return idRead.toString() + MESSAGE_NOT_READ;
@@ -39,13 +41,13 @@ public class CrudService implements CrudServiceRepository {
 
     @Override
     public String readALL() throws ErrorCommandException {
-        validateEmpyDatabse();
+        validateEmptyDatabase();
         return PRODUCT_REPOSITORY.toString();
     }
 
-    private void validateEmpyDatabse() throws ErrorCommandException {
+    private void validateEmptyDatabase() throws ErrorCommandException {
         if (PRODUCT_REPOSITORY.products.size() <= 0) {
-            throw new ErrorCommandException(MESSAGE_DATABASE_EMPY);
+            throw new ErrorCommandException(MESSAGE_DATABASE_EMPTY);
         }
     }
 
@@ -56,14 +58,13 @@ public class CrudService implements CrudServiceRepository {
      */
     @Override
     public String update(Long idUpdate, Product updateProduct) {
-        for (Product item : PRODUCT_REPOSITORY.products) {
-            if (item.ID.equals(idUpdate)) {
-                PRODUCT_REPOSITORY.products.add(updateProduct);
-                delete(idUpdate);
+        for (Map.Entry<Long, Product> entry : PRODUCT_REPOSITORY.products.entrySet()) {
+            if (entry.getKey().equals(idUpdate)) {
+                entry.setValue(updateProduct);
                 return updateProduct.name + MESSAGE_UPDATE;
             }
         }
-        return idUpdate + MESSAGE_NOT_READ;
+        return idUpdate.toString() + MESSAGE_NOT_READ;
     }
 
     /**
@@ -72,10 +73,10 @@ public class CrudService implements CrudServiceRepository {
      */
     @Override
     public String delete(Long idDelete) {
-        for (Product product : PRODUCT_REPOSITORY.products) {
-            if (product.ID.equals(idDelete)) {
-                PRODUCT_REPOSITORY.products.remove(product);
-                return product.name + MESSAGE_DELETE;
+        for (Map.Entry<Long, Product> entry : PRODUCT_REPOSITORY.products.entrySet()) {
+            if (entry.getKey().equals(idDelete)) {
+                PRODUCT_REPOSITORY.products.remove(idDelete);
+                return entry.getValue().name + MESSAGE_DELETE;
             }
         }
         return idDelete.toString() + MESSAGE_NOT_READ;

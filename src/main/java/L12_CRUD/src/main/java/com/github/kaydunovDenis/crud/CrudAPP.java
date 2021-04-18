@@ -7,6 +7,5 @@ public class CrudAPP {
         UserConsole userConsole = new UserConsole();
         userConsole.getUSER_CONTROLLER().getCRUD_SERVICE().getPRODUCT_REPOSITORY().initialProductRepository();
         userConsole.run();
-        //TODO как тестировать приватные методы?
     }
 }
