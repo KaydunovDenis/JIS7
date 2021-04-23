@@ -39,7 +39,7 @@ public class UserConsole implements Runnable {
         print("EXIT");
     }
 
-    public void print(String text) {
+    public static void print(String text) {
         System.out.println("SYSTEM:: " + text + "\n");
     }
 

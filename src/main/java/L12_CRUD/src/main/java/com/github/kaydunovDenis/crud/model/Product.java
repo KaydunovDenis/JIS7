@@ -1,12 +1,20 @@
 package com.github.kaydunovDenis.crud.model;
 
 import com.github.kaydunovDenis.crud.service.ErrorCommandException;
+import com.github.kaydunovDenis.crud.uiConsole.UserConsole;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Product {
+    private static final String MESSAGE_ERROR_CATEGORY =
+            " Error write category.Use next name of category:\n" +
+                    String.join(" ", Arrays.toString(ProductCategory.values()));
     public Long ID;
     public String name;
     public BigDecimal regularPrice;
@@ -15,12 +23,14 @@ public class Product {
     public String description = " - ";
 
     private static Long counterID = 1L;
-    final private static MathContext SETTING_FILTER_BIGDECIMAL = new MathContext(10, RoundingMode.HALF_UP);
+    DecimalFormat decimalFormat = new DecimalFormat("########0.00");
+
+    final private static MathContext SETTING_FILTER_BIG_DECIMAL = new MathContext(10, RoundingMode.HALF_UP);
     final String MESSAGE_ERROR_NUMBER =
             " Error format input it number. Object don't create.\n" +
-            "You need to enter the command with right number.\n"+
-            "The number must be represented by a fractional number between 0 and 1. \n"+
-            "Use a period as a separator.";
+                    "You need to enter the command with right number.\n" +
+                    "The number must be represented by a fractional number between 0 and 1. \n" +
+                    "Use a period as a separator.";
 
 
     /**
@@ -43,12 +53,10 @@ public class Product {
                 validateAndCreateDiscount(args[3]);
             }
             if (length >= 5) {
-                //TODO args5 args6 args7 ......etc
-                description = args[4];
-                //Arrays.stream(args, 4, length).collect(Collectors.joining());
+                createDescription(args);
             }
         } catch (ErrorCommandException e) {
-            //todo
+            UserConsole.print(e.toString());
         }
         ID = counterID++;
     }
@@ -56,15 +64,56 @@ public class Product {
     private void validateCategory(String category) throws ErrorCommandException {
         if (ProductCategory.contains(category)) {
             productCategory = ProductCategory.valueOf(category);
-        } else throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
+        } else throw new ErrorCommandException(name + MESSAGE_ERROR_CATEGORY);
     }
 
     private void validatePrice(String textPrice) throws ErrorCommandException {
+        textPrice = replaceSeparator(textPrice);
         try {
-            regularPrice = new BigDecimal(textPrice, SETTING_FILTER_BIGDECIMAL);
+            regularPrice = new BigDecimal(textPrice, SETTING_FILTER_BIG_DECIMAL);
         } catch (NumberFormatException exception) {
             throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
         }
+    }
+
+    public static String replaceSeparator(String number) {
+        if (number.contains(",")) number = number.replaceAll(",", ".");
+        return number;
+    }
+
+
+    private String getDiscountForToString() {
+        return decimalFormat.format(discount.multiply(BigDecimal.valueOf(100)));
+    }
+
+    private String getActualPrice() {
+        BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
+        BigDecimal actualPrice = regularPrice.multiply(percentCost);
+        return decimalFormat.format(actualPrice);
+    }
+
+    public void validateAndCreateDiscount(String textDiscount) throws ErrorCommandException {
+        textDiscount = replaceSeparator(textDiscount);
+        if (textDiscount.equals("")) textDiscount = "0";
+        try {
+            discount = new BigDecimal(textDiscount, SETTING_FILTER_BIG_DECIMAL);
+
+        } catch (NumberFormatException e) {
+            throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
+        }
+        if (discount.doubleValue() > 1) {
+            discount = new BigDecimal("1");
+        }
+        if (discount.doubleValue() < 0) {
+            discount = new BigDecimal("0");
+        }
+    }
+
+    public void createDescription(String[] args) {
+        //TODO проверить правильность заполнения
+        description = Arrays.stream(args, 4, args.length)
+                .collect(Collectors.joining(" "));
+
     }
 
     /**
@@ -78,36 +127,11 @@ public class Product {
      */
     @Override
     public String toString() {
-        return "Product information:\n" +
-                "ID: " + ID + '\n' +
+        return "ID: " + ID + '\n' +
                 "Name: " + productCategory.toString() + " " + name + '\n' +
-                "Regular price: " + regularPrice.toString() + " евро" + "\n" +
+                "Regular price: " + decimalFormat.format(regularPrice)/*regularPrice.toString()*/ + " евро" + "\n" +
                 "Discount: " + getDiscountForToString() + "%\n" +
                 "Actual price: " + getActualPrice() + " евро" + "\n" +
                 "Description: " + description + "\n\n";
-    }
-
-    private String getDiscountForToString() {
-        return discount.multiply(BigDecimal.valueOf(100)).toString();
-    }
-
-    private String getActualPrice() {
-        BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
-        BigDecimal actualPrice = regularPrice.multiply(percentCost);
-        return String.valueOf(actualPrice.doubleValue());
-    }
-
-    public void validateAndCreateDiscount(String textDiscount) throws ErrorCommandException {
-        try {
-            discount = new BigDecimal(textDiscount, SETTING_FILTER_BIGDECIMAL);
-        } catch (NumberFormatException e) {
-            throw new ErrorCommandException(name + MESSAGE_ERROR_NUMBER);
-        }
-        if (discount.doubleValue() > 1) {
-            discount = new BigDecimal("1");
-        }
-        if (discount.doubleValue() < 0) {
-            discount = new BigDecimal("0");
-        }
     }
 }

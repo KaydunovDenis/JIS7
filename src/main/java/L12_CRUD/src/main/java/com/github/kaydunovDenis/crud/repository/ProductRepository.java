@@ -19,8 +19,8 @@ public class ProductRepository {
         put(new Product(new String[]{"Huawei tablet 5.7", "470", "TABLET"}));
         put(new Product(new String[]{"Lenovo Plus 2020", "1200", "NOTEBOOK"}));
         put(new Product(new String[]{"Lenovo Plus 2021", "1300", "NOTEBOOK", "0.2"}));
-        put(new Product(new String[]{"Notebook Apple Pro 2021", "5300", "NOTEBOOK"}));
-        put(new Product(new String[]{"Bug Computer 2016", "458.9", "COMPUTER"}));
+        put(new Product(new String[]{"Notebook Apple Pro 2021", "5300", "NOTEBOOK", "0.12478"}));
+        put(new Product(new String[]{"Bug Computer 2016", "458.9", "COMPUTER","","Made in Belarus"}));
         put(new Product(new String[]{"Bug Computer 2017", "468.3", "COMPUTER", "0.45"}));
         put(new Product(new String[]{"Bug Computer 2018", "482.5", "COMPUTER"}));
         put(new Product(new String[]{"Agitator 2020 GameMaster 2.0", "91829.56", "COMPUTER"}));
