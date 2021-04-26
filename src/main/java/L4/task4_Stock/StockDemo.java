@@ -1,6 +1,6 @@
 package L4.task4_Stock;
 
-public class StockTest {
+public class StockDemo {
     public static void main(String[] args) {
         Stock google = new Stock("GOOGLE", 10);
         google.printInformation();

@@ -1,7 +1,7 @@
 package L5.T2_TV;
 
 /**
- * @author Denis
+ * @author Denis Kaydunov
  * Далее расписывать проверки и тесты не вижу необходимости.
  */
 public class TvDemo {
@@ -14,7 +14,8 @@ public class TvDemo {
         tv.turnOn();
         tv.toSwithNext();
         System.out.println(tv.getCurrentChanel());
-
         System.out.println(tv.getManufacturer());
+        System.out.println(tv);
+        System.out.println(tv.getCurrentVolume());
     }
 }

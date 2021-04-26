@@ -3,12 +3,12 @@ package L3.task4_Encoder;
 public class EncoderDemo {
     public static void main(String[] args) {
         Encoder encoder = new Encoder();
-        char simb = 'A';
+        char symbol = 'A';
         short number = 129;
 
-        System.out.println("simb = " + simb);
+        System.out.println("symbol = " + symbol);
         System.out.println("number = " + number);
-        encoder.decode(simb);
+        encoder.decode(symbol);
         encoder.encode(number);
     }
 }

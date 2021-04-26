@@ -1,4 +1,4 @@
-package L4.task5_UserLoginService;
+package L4.task5_UserLoginService.src;
 
 public class User {
     String login;

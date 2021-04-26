@@ -32,25 +32,31 @@ public class Tv {
      * * +Переключить на следующий канал (увеличить текущий канал на 1 ед.)
      * * +Переключить на предыдущий канал (уменьшить текущий канал на 1 ед.)
      * * +Увеличить звук (увеличить громкость на 1 ед.)
-     * * +Уменьшик звук (уменьшить громкость на 1 ед.)
+     * * +Уменьшить звук (уменьшить громкость на 1 ед.)
      * * +Включить телевизор
      * * +Выключить телевизор
      * * :Переключать каналы и менять громкость можно только у включенного телевизора.
      */
     public void toSwithNext() {
-        if (isOn) currentChanel++;
+        if (isOn) {
+            currentChanel++;
+        }
     }
 
     public void toSwithBack() {
-        if (isOn) currentChanel--;
+        if (isOn){ currentChanel--;}
     }
 
-    public void volumPlus() {
-        if (isOn) currentVolume++;
+    public void volumePlus() {
+        if (isOn) {
+            currentVolume++;
+        }
     }
 
-    public void volumMinus() {
-        if (isOn) currentVolume--;
+    public void volumeMinus() {
+        if (isOn) {
+            currentVolume--;
+        }
     }
 
     public void turnOn() {
@@ -88,5 +94,15 @@ public class Tv {
     @Override
     public int hashCode() {
         return Objects.hash(currentChanel, currentVolume, manufacturer, isOn);
+    }
+
+    @Override
+    public String toString() {
+        return "Tv{" +
+                "currentChanel=" + currentChanel +
+                ", currentVolume=" + currentVolume +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", isOn=" + isOn +
+                '}';
     }
 }

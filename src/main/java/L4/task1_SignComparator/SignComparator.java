@@ -6,7 +6,7 @@ public class SignComparator {
         if (number > 0) {
             return "Number is positive";
         } else if (number < 0) {
-            return "Nimber is negative";
+            return "Number is negative";
         } else return "Number is equal zero";
     }
 }
