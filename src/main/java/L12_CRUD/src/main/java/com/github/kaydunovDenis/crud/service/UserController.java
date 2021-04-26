@@ -14,7 +14,7 @@ public class UserController implements UserCommandRepository{
 
     public void execute(String command) throws ErrorCommandException {
         validateEmptyCommand(command);
-        String[] words = command.trim().split("\\s");
+        String[] words = getWords(command);
         String[] shortCommand = truncateStartOfCommand(words);
         switch (words[0]) {
             case "-c" -> create(shortCommand);
@@ -30,18 +30,28 @@ public class UserController implements UserCommandRepository{
 
     @Override
     public void create(String[] command) {
-        CRUD_SERVICE.create(new Product(command));
+        //todo при создании продукт выбрасывает ошибку
+        //todo хотя ошибки нету
+
+        //todo при команде "-с" не должно добавлять в базу пустой объект
+
+        //todo проверка на null object
+        try {
+            UserConsole.print(CRUD_SERVICE.create(new Product(command)));
+        } catch (ErrorCommandException e) {
+            UserConsole.print(e.toString());
+        }
     }
 
     @Override
     public void read(String[] command) throws ErrorCommandException {
         Long idRead = idValidate(command[POSITION_ID_IN_COMMAND]);
-        USER_CONSOLE.print(CRUD_SERVICE.read(idRead));
+        UserConsole.print(CRUD_SERVICE.read(idRead));
     }
 
     @Override
     public void readALL() throws ErrorCommandException {
-        USER_CONSOLE.print(CRUD_SERVICE.readALL());
+        UserConsole.print(CRUD_SERVICE.readALL());
     }
 
     /**
@@ -70,7 +80,16 @@ public class UserController implements UserCommandRepository{
     @Override
     public void delete(String idDeleteProduct) throws ErrorCommandException {
         Long idDelete = idValidate(idDeleteProduct);
-        USER_CONSOLE.print(CRUD_SERVICE.delete(idDelete));
+        UserConsole.print(CRUD_SERVICE.delete(idDelete));
+    }
+
+    /**
+     *
+     * @param command some text string
+     * @return massive of string divided spaces
+     */
+    public String[] getWords(String command) {
+        return command.trim().split("\\s");
     }
 
     public static void validateEmptyCommand(String command) throws ErrorCommandException {

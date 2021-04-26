@@ -1,7 +1,7 @@
 package com.github.kaydunovDenis.crud.service;
 
 public interface UserCommandRepository {
-    void create(String[] array);
+    void create(String[] array) throws ErrorCommandException;
 
     void read(String[] command) throws ErrorCommandException;
 

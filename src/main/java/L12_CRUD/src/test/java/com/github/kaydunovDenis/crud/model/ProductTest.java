@@ -1,14 +1,28 @@
 package com.github.kaydunovDenis.crud.model;
 
+import com.github.kaydunovDenis.crud.service.ErrorCommandException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductTest {
-    final Product testProduct1 = new Product(new String[]{"Samsung 7 PRO", "1000", "PHONE", "-0.1"});
-    final Product testProduct2 = new Product(new String[]{"Samsung 8 PRO", "2000", "PHONE", "1.1"});
-    final Product testProduct3 = new Product(new String[]{"Samsung 9 PRO", "3000.50", "PHONE", "0.5"});
+    private static Product testProduct1;
+    private static Product testProduct2;
+    private static Product testProduct3;
+
+
+    @BeforeAll
+    static void beforeAll() {
+        try {
+            testProduct1 = new Product(new String[]{"Samsung 7 PRO", "1000", "PHONE", "-0.1"});
+            testProduct2 = new Product(new String[]{"Samsung 8 PRO", "2000", "PHONE", "1.1"});
+            testProduct3 = new Product(new String[]{"Samsung 9 PRO", "3000.50", "PHONE", "0.5"});
+        } catch (ErrorCommandException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     void testValidateAndCreateDiscount() {

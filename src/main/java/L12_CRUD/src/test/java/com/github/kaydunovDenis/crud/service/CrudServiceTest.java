@@ -7,12 +7,17 @@ import org.junit.jupiter.api.Test;
 
 class CrudServiceTest {
     private static CrudService crudService;
-    final Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
+    private static Product testProduct;
     final Long ID_FIST_PRODUCT = testProduct.ID;
 
     @BeforeEach
     void beforeEach() {
         crudService = new CrudService();
+        try {
+            testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
+        } catch (ErrorCommandException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -42,7 +47,12 @@ class CrudServiceTest {
     @Test
     void update() {
         crudService.create(testProduct);
-        Product dataUpdateProduct = new Product(new String[]{"New Name", "100", "PHONE", "0.2"});
+        Product dataUpdateProduct = null;
+        try {
+            dataUpdateProduct = new Product(new String[]{"New Name", "100", "PHONE", "0.2"});
+        } catch (ErrorCommandException e) {
+            e.printStackTrace();
+        }
         Product actualProduct = crudService.getPRODUCT_REPOSITORY().products.get(ID_FIST_PRODUCT);
         Assertions.assertEquals(testProduct, actualProduct);
 

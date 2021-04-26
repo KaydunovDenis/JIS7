@@ -5,12 +5,22 @@ import com.github.kaydunovDenis.crud.uiConsole.UserConsole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
     private static UserController userController;
-    final private Product testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
+    private Product testProduct;
+
+    {
+        try {
+            testProduct = new Product(new String[]{"Samsung 7 PRO", "1150", "PHONE"});
+        } catch (ErrorCommandException e) {
+            e.printStackTrace();
+        }
+    }
+
+    final String commandCreate = "-c SuperPhone 100.0 PHONE";
+
 
     @BeforeEach
     void beforeEach() {
@@ -20,10 +30,22 @@ class UserControllerTest {
 
     @Test
     void execute() {
+
     }
 
     @Test
     void create() {
+        String[] command = UserController.truncateStartOfCommand(userController.getWords(commandCreate));
+
+        int expected = 1;
+        int actual = userController.getCRUD_SERVICE().getPRODUCT_REPOSITORY().products.size();
+
+        assertEquals(expected, actual);
+
+        userController.create(command);
+        expected = 2;
+        actual = userController.getCRUD_SERVICE().getPRODUCT_REPOSITORY().products.size();
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -104,5 +126,12 @@ class UserControllerTest {
         } catch (ErrorCommandException e) {
             assert true;
         }
+    }
+
+    @Test
+    void getWords() {
+        String[] wordsExpected = {"-c", "SuperPhone", "100.0", "PHONE"};
+        String[] wordsActual = userController.getWords(commandCreate);
+        assertArrayEquals(wordsExpected, wordsActual);
     }
 }

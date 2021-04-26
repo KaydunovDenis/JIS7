@@ -9,6 +9,6 @@ public class CrudAPP {
 
         //Product product = new Product(new String[]{"Acer", "2000.998", "NOTEBOOK", "0.23"});
         //userConsole.getUSER_CONTROLLER().getCRUD_SERVICE().getPRODUCT_REPOSITORY().put(product);
-        //userConsole.run();
+        userConsole.run();
     }
 }

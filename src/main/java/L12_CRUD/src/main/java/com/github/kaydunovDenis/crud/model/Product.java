@@ -1,7 +1,6 @@
 package com.github.kaydunovDenis.crud.model;
 
 import com.github.kaydunovDenis.crud.service.ErrorCommandException;
-import com.github.kaydunovDenis.crud.uiConsole.UserConsole;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -9,12 +8,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Product {
-    private static final String MESSAGE_ERROR_CATEGORY =
-            " Error write category.Use next name of category:\n" +
-                    String.join(" ", Arrays.toString(ProductCategory.values()));
     public Long ID;
     public String name;
     public BigDecimal regularPrice;
@@ -23,14 +18,24 @@ public class Product {
     public String description = " - ";
 
     private static Long counterID = 1L;
-    DecimalFormat decimalFormat = new DecimalFormat("########0.00");
+    final private static MathContext SETTING_FILTER_BIG_DECIMAL =
+            new MathContext(10, RoundingMode.HALF_UP);
 
-    final private static MathContext SETTING_FILTER_BIG_DECIMAL = new MathContext(10, RoundingMode.HALF_UP);
-    final String MESSAGE_ERROR_NUMBER =
+    final private static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("########0.00");
+
+    final private static String MESSAGE_ERROR_CATEGORY =
+            " Error write category.Use next name of category:\n" +
+                    String.join(" ", Arrays.toString(ProductCategory.values()));
+
+    final private static String MESSAGE_ERROR_NUMBER =
             " Error format input it number. Object don't create.\n" +
                     "You need to enter the command with right number.\n" +
                     "The number must be represented by a fractional number between 0 and 1. \n" +
                     "Use a period as a separator.";
+
+    final private static String MESSAGE_ERROR_CREATE =
+            "Your command is error. You need will write name product, regular price product," +
+                    " and category product";
 
 
     /**
@@ -41,22 +46,20 @@ public class Product {
      *             <br> 5 Description: information
      * @author Kaydunov Denis
      */
-    public Product(String[] args) {
+    public Product(String[] args) throws ErrorCommandException {
         int length = args.length;
-        try {
-            if (length >= 3) {
-                name = args[0];
-                validatePrice(args[1]);
-                validateCategory(args[2]);
-            }
-            if (length >= 4) {
-                validateAndCreateDiscount(args[3]);
-            }
-            if (length >= 5) {
-                createDescription(args);
-            }
-        } catch (ErrorCommandException e) {
-            UserConsole.print(e.toString());
+        if (length < 3) {
+            throw new ErrorCommandException(MESSAGE_ERROR_CREATE);
+        } else {
+            name = args[0];
+            validatePrice(args[1]);
+            validateCategory(args[2]);
+        }
+        if (length >= 4) {
+            validateAndCreateDiscount(args[3]);
+        }
+        if (length >= 5) {
+            createDescription(args);
         }
         ID = counterID++;
     }
@@ -83,13 +86,13 @@ public class Product {
 
 
     private String getDiscountForToString() {
-        return decimalFormat.format(discount.multiply(BigDecimal.valueOf(100)));
+        return DECIMAL_FORMAT.format(discount.multiply(BigDecimal.valueOf(100)));
     }
 
     private String getActualPrice() {
         BigDecimal percentCost = (new BigDecimal("1")).subtract(discount);
         BigDecimal actualPrice = regularPrice.multiply(percentCost);
-        return decimalFormat.format(actualPrice);
+        return DECIMAL_FORMAT.format(actualPrice);
     }
 
     public void validateAndCreateDiscount(String textDiscount) throws ErrorCommandException {
@@ -129,7 +132,7 @@ public class Product {
     public String toString() {
         return "ID: " + ID + '\n' +
                 "Name: " + productCategory.toString() + " " + name + '\n' +
-                "Regular price: " + decimalFormat.format(regularPrice)/*regularPrice.toString()*/ + " евро" + "\n" +
+                "Regular price: " + DECIMAL_FORMAT.format(regularPrice)/*regularPrice.toString()*/ + " евро" + "\n" +
                 "Discount: " + getDiscountForToString() + "%\n" +
                 "Actual price: " + getActualPrice() + " евро" + "\n" +
                 "Description: " + description + "\n\n";
