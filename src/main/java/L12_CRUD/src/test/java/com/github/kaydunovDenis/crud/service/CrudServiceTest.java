@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class CrudServiceTest {
     private static CrudService crudService;
     private static Product testProduct;
-    final Long ID_FIST_PRODUCT = testProduct.ID;
+    private static Long ID_FIST_PRODUCT;
 
     @BeforeEach
     void beforeEach() {
@@ -18,6 +18,7 @@ class CrudServiceTest {
         } catch (ErrorCommandException e) {
             e.printStackTrace();
         }
+        ID_FIST_PRODUCT = testProduct.ID;
     }
 
     @Test
