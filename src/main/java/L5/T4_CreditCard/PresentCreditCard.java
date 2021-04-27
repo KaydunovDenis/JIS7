@@ -1,4 +1,4 @@
-package L5.T5_CreditCard;
+package L5.T4_CreditCard;
 
 public class PresentCreditCard {
     public static void main(String[] args) {
