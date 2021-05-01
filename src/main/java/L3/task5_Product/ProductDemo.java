@@ -3,7 +3,7 @@ package L3.task5_Product;
 public class ProductDemo {
 
     public static void main(String[] args) {
-        Product product1 = new Product("Candom");
+        Product product1 = new Product("Sigar");
         Product product2 = new Product("Vine");
 
         product1.setDiscount(0.15);

@@ -1,8 +1,7 @@
-package L4.task5_UserLoginService;
+package L4.task5_UserLoginService.src;
 
 public class UserLoginService {
-
-    boolean login(User user, String password) {
+    public boolean login(User user, String password) {
         if (!user.isItBlocked() && user.getPassword().equals(password)) {
             user.resetAttempts();
             return true;

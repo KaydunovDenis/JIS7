@@ -1,4 +1,7 @@
-package L4.task5_UserLoginService;
+package L4.task5_UserLoginService.test;
+
+import L4.task5_UserLoginService.src.User;
+import L4.task5_UserLoginService.src.UserLoginService;
 
 public class UserLoginServiceTest {
     public static void main(String[] args) {
