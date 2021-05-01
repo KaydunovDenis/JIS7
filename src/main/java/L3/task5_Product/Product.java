@@ -12,7 +12,8 @@ class Product {
     double actualPrice() throws Exception {
         if (regularPrice < 0 || discount < 0 || discount > 1) {
             System.out.println("Product - " + name + " were input error value. Enter correct value.");
-            //System.exit(0);//**********Так лучше не делать. Ты останавливаешь работу программы.
+            //System.exit(0);
+            // **********Так лучше не делать. Ты останавливаешь работу программы.
             // Подумай как сделать лучше. Приложения Java должны быть отказоустойчивы***************//
             throw new Exception("Product - " + name + " were input error value. Enter correct value.");
         }
