@@ -1,9 +1,25 @@
-package L9.task3_Library.src.main.java.com.github.kaydunovDenis.library.model;
+package com.github.kaydunovDenis.library.model;
 
 import lombok.Data;
 
 @Data
 public class Book {
-    String author;
     String name;
+    String author;
+
+    private Book() {
+    }
+
+    public Book(String name, String author) {
+        this.name = name;
+        this.author = author;
+    }
+
+    private void setAuthor(String author) {
+        this.author = author;
+    }
+
+    private void setName(String name) {
+        this.name = name;
+    }
 }
