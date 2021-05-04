@@ -2,30 +2,26 @@ package com.github.kaydunovDenis.library.repository;
 
 import com.github.kaydunovDenis.library.model.Book;
 import com.github.kaydunovDenis.library.service.LibraryService;
+import org.apache.log4j.Logger;
 
 import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Library implements LibraryService {
     private final HashSet<Book> libraryBook = new HashSet<>();
-    private final Logger log = Logger.getLogger(Library.class.getName());
-
-    public Library() {
-       // log.setLevel(Level.FINE);
-    }
+    final static Logger LOGGER = Logger.getLogger(Library.class);
 
     @Override
     public void addBook(Book book) {
         libraryBook.add(book);
+        LOGGER.info("AddBook: " + book.getName() + " add successful.");
     }
 
     @Override
     public void deleteBook(Book book) {
         if (libraryBook.remove(book)) {
-            log.fine("DeleteBook: " + book.getName() + " remove successful.");
+            LOGGER.info("DeleteBook: " + book.getName() + " remove successful.");
         } else {
-            log.log(Level.FINE,"Book " + book.getName() + " not found.");
+            LOGGER.info("Book " + book.getName() + " not found.");
         }
     }
 
@@ -33,11 +29,11 @@ public class Library implements LibraryService {
     public Book findByName(String bookName) {
         for (Book book : libraryBook) {
             if (book.getName().equals(bookName)) {
-                log.log(Level.FINE, "FindByName: " + bookName + " found: " + book.toString());
+                LOGGER.info( "FindByName: " + bookName + " found: " + book.toString());
                 return book;
             }
         }
-        log.log(Level.FINE, "Book " + bookName + " not found.");
+        LOGGER.info("Book " + bookName + " not found.");
         return null;
     }
 
@@ -49,13 +45,17 @@ public class Library implements LibraryService {
                 tempSet.add(book);
             }
         }
-        log.log(Level.FINE, "FindByAuthor: ");
+        LOGGER.info("FindByAuthor: " + author);
         if (tempSet.size() > 0) {
-            tempSet.forEach(x -> log.log(Level.FINE, x.toString()));
+            tempSet.forEach(x -> LOGGER.info("--" + x.toString()));
             return tempSet;
         } else {
-            log.log(Level.FINE, "Book of " + author + " not found.");
+            LOGGER.info("Book of " + author + " not found.");
             return null;
         }
+    }
+
+    public HashSet<Book> getLibraryBook() {
+        return libraryBook;
     }
 }
