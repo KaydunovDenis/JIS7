@@ -36,10 +36,6 @@ public class HospitalService implements HospitalServiceRepository {
         add(patient);
     }
 
-    private void checkDifferentTime(Patient patient) {
-
-    }
-
     private boolean queueIsFree(Patient patient) {
         boolean isFree = false;
         if (calculateCounterEmptyPlaceInQueue(patient) > 0) {

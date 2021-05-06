@@ -2,8 +2,10 @@ package com.github.kaydunovDenis.model;
 
 import lombok.Data;
 
+import java.util.Comparator;
+
 @Data
-public class Patient {
+public class Patient implements Comparable<Patient> {
     private String name;
     private boolean isPaid;
     private Special special;
@@ -21,5 +23,11 @@ public class Patient {
         return "Patient " + getName() +
                 " with " + getSpecial() +
                 " at " + getAppointmentTime();
+    }
+
+
+    @Override
+    public int compareTo(Patient o) {
+        return appointmentTime.compareTo(o.appointmentTime);
     }
 }
