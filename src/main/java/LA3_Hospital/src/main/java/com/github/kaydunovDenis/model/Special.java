@@ -3,19 +3,26 @@ package com.github.kaydunovDenis.model;
 import java.util.Random;
 
 public enum Special {
-    THERAPIST("ТЕРАПЕВТ"),
-    SURGEON("ХИРУРГ"),
-    NEUROLOGIST("НЕВРОЛОГ"),
-    OTOLARYNGOLOGIES("ОТОРИНОЛАРИНГОЛОГ");
+    THERAPIST("therapist"),
+    SURGEON("surgeon"),
+    NEUROLOGIST("neurologist"),
+    OTOLARYNGOLOGIES("otolaryngologies");
 
-    String doctor ;
+    String doctor;
 
     Special(String doctor) {
         this.doctor = doctor;
     }
 
+
+
     public static Special getRandomValue() {
         Random random = new Random();
         return Special.values()[random.nextInt(Special.values().length)];
+    }
+
+    @Override
+    public String toString() {
+        return doctor;
     }
 }
