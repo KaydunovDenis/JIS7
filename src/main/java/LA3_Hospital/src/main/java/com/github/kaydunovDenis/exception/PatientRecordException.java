@@ -1,7 +1,7 @@
 package com.github.kaydunovDenis.exception;
 
 public class PatientRecordException extends RuntimeException {
-    private String message;
+    private final String message;
 
     public PatientRecordException(String message) {
         this.message = message;
