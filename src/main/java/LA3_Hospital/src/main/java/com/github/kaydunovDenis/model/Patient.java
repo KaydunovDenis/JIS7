@@ -18,9 +18,9 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString() {
-        return "Patient " + getName() +
-                " with " + getSpecial() +
-                " at " + getTime();
+        return "Patient\t" + getName() +
+                ":\t" + getSpecial() +
+                "\t" + getTime();
     }
 
     @Override

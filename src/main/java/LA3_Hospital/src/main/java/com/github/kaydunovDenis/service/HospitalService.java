@@ -18,31 +18,32 @@ public class HospitalService {
 
     public void add(Patient patient) {
         validatePayment(patient);
-        if (!queueIsFree(patient)) {
-            findAnotherTime(patient);
+        if (queueIsFree(patient)) {
+            PATIENT_REPOSITORY.add(patient);
+            log.info(patient.toString() + "\tMade an appointment.");
+            return;
         }
-        PATIENT_REPOSITORY.add(patient);
-        log.info(patient.toString() + " made an appointment.");
+        findAnotherTime(patient);
     }
 
     private void findAnotherTime(Patient patient) {
         int newOrdinalInAppointmentTime = getNewOrdinalInAppointmentTime(patient);
         patient.setTime(Time.values()[newOrdinalInAppointmentTime]);
-        log.info(patient.toString() + "  is busy. Finding another time.");
+        log.info(patient.toString() + "\tBusy. Finding another time.");
         add(patient);
     }
 
     private int getNewOrdinalInAppointmentTime(Patient patient) {
         int newOrdinalInAppointmentTime = patient.getTime().ordinal() + 1;
         if (newOrdinalInAppointmentTime >= Special.values().length - 1) {
-            throw new PatientRecordException(patient.toString() + ". There are not places.");
+            throw new PatientRecordException(patient.toString() + "\tThere are not places.");
         }
         return newOrdinalInAppointmentTime;
     }
 
     private void validatePayment(Patient patient) {
         if (!patient.isPaid()) {
-            throw new PatientRecordException(patient.toString() + " don't have the payment.");
+            throw new PatientRecordException(patient.toString() + "\tDon't have the payment.");
         }
     }
 
@@ -68,7 +69,6 @@ public class HospitalService {
     public List<Patient> getPatientList() {
         return PATIENT_REPOSITORY.getPatientList();
     }
-
 
 
     public List<Patient> getListPatientBySpecial(Special special) {

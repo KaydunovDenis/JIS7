@@ -5,7 +5,7 @@ import com.github.kaydunovDenis.model.Patient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientRepository{
+public class PatientRepository {
     private static final List<Patient> patientList = new ArrayList<>();
 
     public void add(Patient patient) {

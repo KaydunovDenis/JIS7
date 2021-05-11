@@ -9,10 +9,10 @@ public class HospitalServiceDemo {
         HospitalService hospitalService = new HospitalService();
         hospitalService.addTestPatients(100);
 
-        System.out.println("Patient list:");
+        System.out.println("\nPatient list:");
         hospitalService.getPatientList().forEach(System.out::println);
 
-        System.out.println("List of patients by category:");
+        System.out.println("\nList of patients by category:");
         hospitalService.getListPatientBySpecial(Special.NEUROLOGIST).stream().
                 sorted().forEach(System.out::println);
     }

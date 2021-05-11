@@ -3,9 +3,9 @@ package com.github.kaydunovDenis.model;
 import java.util.Random;
 
 public enum Special {
-    THERAPIST("therapist"),
-    SURGEON("surgeon"),
-    NEUROLOGIST("neurologist"),
+    THERAPIST("therapist       "),
+    SURGEON("surgeon         "),
+    NEUROLOGIST("neurologist     "),
     OTOLARYNGOLOGIES("otolaryngologies");
 
     String doctor;
@@ -13,7 +13,6 @@ public enum Special {
     Special(String doctor) {
         this.doctor = doctor;
     }
-
 
 
     public static Special getRandomValue() {
