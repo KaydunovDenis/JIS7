@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class HospitalService {
     private static final int NUMBER_PATIENTS_PER_HOUR = 2;
-    public static final PatientRepository PATIENT_REPOSITORY = new PatientRepository();
+    private static final PatientRepository PATIENT_REPOSITORY = new PatientRepository();
     Logger log = Logger.getLogger(HospitalService.class);
 
     public void add(Patient patient) {
@@ -56,7 +56,7 @@ public class HospitalService {
 
     private int calculateCounterEmptyPlaceInQueue(Patient patient) {
         int counterEmptyPlaceInQueue = NUMBER_PATIENTS_PER_HOUR;
-        for (Patient item : PATIENT_REPOSITORY.getPatientList()) {
+        for (Patient item : getPatientList()) {
             if (item.getSpecial().equals(patient.getSpecial()) &&
                     item.getTime().equals(patient.getTime())) {
                 counterEmptyPlaceInQueue--;
@@ -65,9 +65,15 @@ public class HospitalService {
         return counterEmptyPlaceInQueue;
     }
 
+    public List<Patient> getPatientList() {
+        return PATIENT_REPOSITORY.getPatientList();
+    }
+
+
+
     public List<Patient> getListPatientBySpecial(Special special) {
         List<Patient> tempListPatient = new ArrayList<>();
-        for (Patient item : PATIENT_REPOSITORY.getPatientList()) {
+        for (Patient item : getPatientList()) {
             if (item.getSpecial().equals(special)) {
                 tempListPatient.add(item);
             }

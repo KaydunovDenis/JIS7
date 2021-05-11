@@ -23,26 +23,26 @@ class HospitalServiceTest extends TestCase {
         System.out.println("before");
         hospitalService = new HospitalService();
         //ПОЧЕМУ без строчки ниже. В момент инициализации hospitalService, PATIENT_REPOSITORY уже не пустой????
-        HospitalService.PATIENT_REPOSITORY.getPatientList().clear();
-        System.out.println(HospitalService.PATIENT_REPOSITORY.getPatientList().size());
+        hospitalService.getPatientList().clear();
+        System.out.println(hospitalService.getPatientList().size());
     }
 
     @Test
     void add() {
         hospitalService = new HospitalService();
         expect = 0;
-        result = HospitalService.PATIENT_REPOSITORY.getPatientList().size();
+        result = hospitalService.getPatientList().size();
         System.out.println(result);
         Assert.assertEquals(expect, result);
 
         hospitalService.add(patient);
         expect = 1;
-        result = HospitalService.PATIENT_REPOSITORY.getPatientList().size();
+        result = hospitalService.getPatientList().size();
         Assert.assertEquals(expect, result);
 
         hospitalService.add(patient);
         expect = 2;
-        result = HospitalService.PATIENT_REPOSITORY.getPatientList().size();
+        result = hospitalService.getPatientList().size();
         Assert.assertEquals(expect, result);
 
         String expectMessage = "Patient Denis with neurologist at 15:00. There are not places.";
@@ -53,7 +53,7 @@ class HospitalServiceTest extends TestCase {
             resultMessage = e.getMessage();
         }
         expect = 2;
-        result = HospitalService.PATIENT_REPOSITORY.getPatientList().size();
+        result = hospitalService.getPatientList().size();
         Assert.assertEquals(expect, result);
         Assert.assertEquals(expectMessage, resultMessage);
     }
@@ -71,7 +71,7 @@ class HospitalServiceTest extends TestCase {
     void addTestPatients() {
         expect = 5;
         hospitalService.addTestPatients(5);
-        result = HospitalService.PATIENT_REPOSITORY.getPatientList().size();
+        result = hospitalService.getPatientList().size();
         Assert.assertTrue(expect >= result);
     }
 }
