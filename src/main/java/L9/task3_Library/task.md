@@ -20,25 +20,16 @@
 [+]Вернуть все книги по автору
 [+]При создании объекта, список книг должен быть пустым, а не null.
 
-[-]Продемонстрировать работу методов с учетом логических требований. 
+[+]Продемонстрировать работу методов с учетом логических требований. 
 
 Написать тестовые сценарии для класса
-[-]Library в классе LibraryTest. Все тестовые сценарии должны отрабатывать без ошибок.
-
+[+]Library в классе LibraryTest. Все тестовые сценарии должны отрабатывать без ошибок.
 
 Book bookOne = new Book("War and Peace", "Leo Tolstoy");
 Book bookTwo = new Book("Anna Karenina", "Leo Tolstoy");
-​
 Library library = new Library();
-​
 library.addBook(bookOne);
 library.addBook(bookTwo);
-​
 library.findByName("War and Peace"); //Should return bookOne
-library.findByAuthor("Leo Tolstoy"); //Should return bookOne, bookTwo
-​
+library.findByAuthor("Leo Tolstoy"); //Should return bookOne, bookTw
 library.deleteBook(bookTwo);
-
-
-
-2. Repro Steps

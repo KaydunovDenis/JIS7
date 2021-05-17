@@ -30,7 +30,7 @@ public class Library implements LibraryService {
     public Book findByName(String bookName) {
         for (Book book : libraryBook) {
             if (book.getName().equals(bookName)) {
-                LOGGER.info( "FindByName: " + bookName + " found: " + book.toString());
+                LOGGER.info("FindByName: " + bookName + " found: " + book.toString());
                 return book;
             }
         }
@@ -49,11 +49,10 @@ public class Library implements LibraryService {
         LOGGER.info("FindByAuthor: " + author);
         if (tempSet.size() > 0) {
             tempSet.forEach(x -> LOGGER.info("--" + x.toString()));
-            return tempSet;
         } else {
             LOGGER.info("Book of " + author + " not found.");
-            return null;
         }
+        return tempSet;
     }
 
     public HashSet<Book> getLibraryBook() {
