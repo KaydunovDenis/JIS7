@@ -1,5 +1,6 @@
 package com.github.kaydunovDenis.library.repository;
 
+import com.github.kaydunovDenis.library.exception.LibraryException;
 import com.github.kaydunovDenis.library.model.Book;
 import com.github.kaydunovDenis.library.service.LibraryService;
 import org.apache.log4j.Logger;
@@ -34,7 +35,7 @@ public class Library implements LibraryService {
             }
         }
         LOGGER.info("Book " + bookName + " not found.");
-        return null;
+        throw new LibraryException("Book " + bookName + " not found.");
     }
 
     @Override

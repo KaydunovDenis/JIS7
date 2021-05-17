@@ -3,7 +3,7 @@ package com.github.kaydunovDenis.library;
 import com.github.kaydunovDenis.library.model.Book;
 import com.github.kaydunovDenis.library.repository.Library;
 
-public class AppLibrary {
+public class LibraryDemo {
     public static void main(String[] args) {
         Library library = new Library();
         library.findByAuthor("Пушкин");
@@ -25,7 +25,5 @@ public class AppLibrary {
         library.findByName("War and Peace"); //Should return bookOne
         library.findByAuthor("Leo Tolstoy"); //Should return bookOne, bookTwo
         library.deleteBook(book6);
-
-
     }
 }

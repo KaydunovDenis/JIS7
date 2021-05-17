@@ -105,3 +105,29 @@
 2021-05-05 01:23:25 INFO  - --Book(name=Anna Karenina, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - --Book(name=War and Peace, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - DeleteBook: Anna Karenina remove successful.
+2021-05-11 22:46:38 INFO  - FindByAuthor: Пушкин
+2021-05-11 22:46:38 INFO  - Book of Пушкин not found.
+2021-05-11 22:46:38 INFO  - AddBook: Евгений Онегин add successful.
+2021-05-11 22:46:38 INFO  - AddBook: Властелин колец add successful.
+2021-05-11 22:46:38 INFO  - AddBook: Дубровский add successful.
+2021-05-11 22:46:38 INFO  - AddBook: Война и мир add successful.
+2021-05-11 22:46:38 INFO  - AddBook: War and Peace add successful.
+2021-05-11 22:46:38 INFO  - AddBook: Anna Karenina add successful.
+2021-05-11 22:46:38 INFO  - FindByName: War and Peace found: Book(name=War and Peace, author=Leo Tolstoy)
+2021-05-11 22:46:38 INFO  - FindByAuthor: Leo Tolstoy
+2021-05-11 22:46:38 INFO  - --Book(name=Anna Karenina, author=Leo Tolstoy)
+2021-05-11 22:46:38 INFO  - --Book(name=War and Peace, author=Leo Tolstoy)
+2021-05-11 22:46:38 INFO  - DeleteBook: Anna Karenina remove successful.
+2021-05-11 22:51:06 INFO  - FindByAuthor: Пушкин
+2021-05-11 22:51:06 INFO  - Book of Пушкин not found.
+2021-05-11 22:51:06 INFO  - AddBook: Евгений Онегин add successful.
+2021-05-11 22:51:06 INFO  - AddBook: Властелин колец add successful.
+2021-05-11 22:51:06 INFO  - AddBook: Дубровский add successful.
+2021-05-11 22:51:06 INFO  - AddBook: Война и мир add successful.
+2021-05-11 22:51:06 INFO  - AddBook: War and Peace add successful.
+2021-05-11 22:51:06 INFO  - AddBook: Anna Karenina add successful.
+2021-05-11 22:51:06 INFO  - FindByName: War and Peace found: Book(name=War and Peace, author=Leo Tolstoy)
+2021-05-11 22:51:06 INFO  - FindByAuthor: Leo Tolstoy
+2021-05-11 22:51:06 INFO  - --Book(name=Anna Karenina, author=Leo Tolstoy)
+2021-05-11 22:51:06 INFO  - --Book(name=War and Peace, author=Leo Tolstoy)
+2021-05-11 22:51:06 INFO  - DeleteBook: Anna Karenina remove successful.
