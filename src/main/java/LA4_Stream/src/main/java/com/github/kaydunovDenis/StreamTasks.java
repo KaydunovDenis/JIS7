@@ -13,11 +13,11 @@ public class StreamTasks {
         //1
         System.out.println("1. Создать Stream на коллекции рандомных целочисленных значений" +
                 "и отфильтровать только четные.");
-        ArrayList<Integer> listInteger = new ArrayList<>(generateCollectionIntegerNumber(10));
+        List<Integer> listInteger = new ArrayList<>(generateCollectionIntegerNumber(10));
         System.out.println("List before the filtration:");
         listInteger.forEach(System.out::println);
         System.out.println("List after the filtration:");
-        listInteger.stream().filter(x -> ((x % 2) == 0)).forEach(System.out::println);
+        listInteger.stream().filter(x -> x % 2 == 0).forEach(System.out::println);
 
         //2
         System.out.println("\nСоздать коллекцию строк, написать метод который принимает аргумент (часть строки)\n" +
@@ -49,24 +49,26 @@ public class StreamTasks {
                 .forEach(System.out::println);
 
         System.out.println("\nНайти самый дорогой продукт у которого нет скидки:");
-        System.out.println(productRepository.getListProducts().stream()
+        Product tempProduct = productRepository.getListProducts().stream()
                 .filter(x -> x.getDiscount() == 0)
                 .max(Comparator.comparingDouble(Product::getPrice))
-                .orElse(null));
+                .orElse(null);
+        System.out.println(tempProduct);
 
         System.out.println("\nНайти самый дешевый продукт с самой большой скидкой:");
-        System.out.println(productRepository.getListProducts().stream()
+        tempProduct = productRepository.getListProducts().stream()
                 .min(Comparator.comparing(Product::getPrice)
                 .thenComparing((o1, o2) -> Double.compare(o2.getDiscount(), o1.getDiscount())))
-                .orElse(null));
+                .orElse(null);
+        System.out.println(tempProduct);
     }
 
     private static boolean findArgInStartOrEndString(String text, String arg) {
         return text.startsWith(arg) || text.endsWith(arg);
     }
 
-    private static ArrayList<Integer> generateCollectionIntegerNumber(int count) {
-        ArrayList<Integer> list = new ArrayList<>();
+    private static List<Integer> generateCollectionIntegerNumber(int count) {
+        List<Integer> list = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < count; i++) {
             list.add(random.nextInt());
