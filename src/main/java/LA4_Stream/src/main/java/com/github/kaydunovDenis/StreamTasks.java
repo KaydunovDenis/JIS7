@@ -49,18 +49,16 @@ public class StreamTasks {
                 .forEach(System.out::println);
 
         System.out.println("\nНайти самый дорогой продукт у которого нет скидки:");
-        Product tempProduct = productRepository.getListProducts().stream()
+        productRepository.getListProducts().stream()
                 .filter(x -> x.getDiscount() == 0)
                 .max(Comparator.comparingDouble(Product::getPrice))
-                .orElse(null);
-        System.out.println(tempProduct);
+                .ifPresent(System.out::println);
 
         System.out.println("\nНайти самый дешевый продукт с самой большой скидкой:");
-        tempProduct = productRepository.getListProducts().stream()
+        productRepository.getListProducts().stream()
                 .min(Comparator.comparing(Product::getPrice)
                 .thenComparing((o1, o2) -> Double.compare(o2.getDiscount(), o1.getDiscount())))
-                .orElse(null);
-        System.out.println(tempProduct);
+                .ifPresent(System.out::println);
     }
 
     private static boolean findArgInStartOrEndString(String text, String arg) {
