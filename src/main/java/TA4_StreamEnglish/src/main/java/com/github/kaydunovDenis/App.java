@@ -3,7 +3,10 @@ package com.github.kaydunovDenis;
 import com.github.kaydunovDenis.model.Person;
 import com.github.kaydunovDenis.model.Skill;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class App {
@@ -29,8 +32,6 @@ public class App {
 
         System.out.println("Person has Kannada > 50%");
         findPersonHasNeedSkill(persons, "Kannada").forEach(System.out::println);
-
-
     }
 
     private static ArrayList<Person> findPersonHasNeedSkill(List<Person> persons, String language) {
@@ -39,12 +40,13 @@ public class App {
                         .anyMatch(skill -> skill.getName().equals(language) && skill.getProficiency() > 50))
                 .collect(Collectors.toList());
         if (personList.size() <= 0) {
-            personList.add(persons.stream()
+            persons.stream()
+                    .filter(Objects::nonNull)
                     .max(Comparator.comparingInt(person -> person.getSkills().stream()
                             .filter(skill -> skill.getName().equals(language))
                             .findFirst().map(Skill::getProficiency)
                             .orElse(0)))
-                    .orElse(null));
+                    .ifPresent(personList::add);
         }
         return personList;
     }
