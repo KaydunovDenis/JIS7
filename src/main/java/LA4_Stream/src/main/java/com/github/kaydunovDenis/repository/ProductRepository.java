@@ -25,17 +25,32 @@ public class ProductRepository {
             listProducts.add(product);
         }
 
-        Product product1 = new Product("ZeroDiscount1", 10, 0);
-        Product product2 = new Product("ZeroDiscount1", 20, 0);
-        listProducts.add(product1);
-        listProducts.add(product2);
+        generateProductsWithZeroDiscount();
+        generateProductsWithCheapPrice();
+    }
 
+    private void generateProductsWithCheapPrice() {
         Product product3 = new Product("CheapProduct1", 0.01, 70);
         Product product4 = new Product("CheapProduct2", 0.01, 90);
         Product product5 = new Product("CheapProduct3", 0.01, 80);
         listProducts.add(product3);
         listProducts.add(product4);
         listProducts.add(product5);
+    }
+
+    private void generateProductsWithZeroDiscount() {
+        Product productZeroDiscount1 = new Product("ZeroDiscount1", 10, 0);
+        Product productZeroDiscount2 = new Product("ZeroDiscount1", 20, 0);
+        Product productZeroDiscount3 = new Product("ZeroDiscount1", 320, 0);
+        Product productZeroDiscount4 = new Product("ZeroDiscount1", 123.32, 0);
+        Product productZeroDiscount5 = new Product("ZeroDiscount1", 20.34, 0);
+        Product productZeroDiscount6 = new Product("ZeroDiscount1", 0.20, 0);
+        listProducts.add(productZeroDiscount1);
+        listProducts.add(productZeroDiscount2);
+        listProducts.add(productZeroDiscount3);
+        listProducts.add(productZeroDiscount4);
+        listProducts.add(productZeroDiscount5);
+        listProducts.add(productZeroDiscount6);
     }
 
     public List<Product> getListProducts() {
