@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Skill {
-    String name;
-    int proficiency;
+    private String name;
+    private int proficiency;
 
     @Override
     public String toString() {

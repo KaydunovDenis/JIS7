@@ -5,13 +5,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class Person {
-    long id;
-    String name;
-    ArrayList<Skill> skills = new ArrayList<>();
+    private long id;
+    private String name;
+    private List<Skill> skills = new ArrayList<>();
 
     public Person(long id, String name, Skill ... skills) {
         this.id = id;

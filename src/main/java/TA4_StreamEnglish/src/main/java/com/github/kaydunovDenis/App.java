@@ -6,8 +6,6 @@ import com.github.kaydunovDenis.model.Skill;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -28,29 +26,27 @@ public class App {
         persons.forEach(System.out::println);
 
         System.out.println("Person has English > 50%");
-        findPersonHasNeedSkill(persons, "English").forEach(System.out::println);
+        System.out.println(findPersonHasNeedSkill(persons, "English"));
 
         System.out.println("Person has Kannada > 50%");
-        findPersonHasNeedSkill(persons, "Kannada").forEach(System.out::println);
+        System.out.println(findPersonHasNeedSkill(persons, "Kannada"));
     }
 
-    private static ArrayList<Person> findPersonHasNeedSkill(List<Person> persons, String language) {
-        var personList = (ArrayList<Person>) persons.stream()
-                .filter(person -> person.getSkills().stream()
-                        .anyMatch(skill -> skill.getName().equals(language) && skill.getProficiency() > 50))
-                .collect(Collectors.toList());
-        if (personList.size() <= 0) {
-            persons.stream()
-                    .filter(Objects::nonNull)
-                    .max(Comparator.comparingInt(person -> person.getSkills().stream()
-                            .filter(skill -> skill.getName().equals(language))
-                            .findFirst().map(Skill::getProficiency)
-                            .orElse(0)))
-                    .ifPresent(personList::add);
-        }
-        return personList;
+    private static Person findPersonHasNeedSkill(List<Person> persons, String language) {
+        return persons.stream()
+                .max(Comparator.comparingInt(person -> getProficiency(person, language)))
+                .orElseThrow();
+    }
+
+    private static int getProficiency(Person person, String language) {
+        return person.getSkills().stream()
+                .filter(skill -> skill.getName().equals(language))
+                .findAny()
+                .orElseThrow()
+                .getProficiency();
     }
 }
+
 
 
 

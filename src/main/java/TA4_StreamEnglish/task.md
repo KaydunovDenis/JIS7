@@ -1,6 +1,6 @@
 ###Task
 * Tasks:
-[+] 1. Find best matching person - for ex;
+[+] 1. Find a best matching person - for ex;
      If someone is looking for English with more than 50% proficiency then 
                we need to search for Person whose proficiency is more than 50%.
      In the above example it is Gnanesh who has 100% proficiency in English.
@@ -8,9 +8,9 @@
      (Case for Kannada in above example) then find Technician who is best among rest
      ie Suresh in the above case (40%)
 
-For presentate your result write test for each case
+For present your result write test for each case
 
-    List<Person> persons = new ArrayList<>();
+List<Person> persons = new ArrayList<>();
 
         persons.add(new Person(1L, "Lokesh", new Skill("English", 10),
                 new Skill("Kannada", 20), new Skill("Hindi", 10)));
@@ -29,3 +29,4 @@ For presentate your result write test for each case
 
         persons.add(new Person(6L, "Gnanesh", new Skill("English", 100),
                 new Skill("Kannada", 20), new Skill("Hindi", 40)));
+    
