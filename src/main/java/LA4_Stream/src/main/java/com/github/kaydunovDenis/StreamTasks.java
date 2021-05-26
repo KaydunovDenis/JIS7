@@ -59,17 +59,17 @@ public class StreamTasks {
 
         //4.2
         UserRepository userRepository = new UserRepository();
-        System.out.println("\n Eсли юзеры имеют статус guest, то" +
-                "засетать им статус USER и перевести флаг isActive в true,\n" +
+        System.out.println("\n Если юзеры имеют статус guest, то" +
+                "установить им статус USER и перевести флаг isActive в true,\n" +
                 "а если уже был USER и isActive то перевести в VIP USER.");
-        List<User> list = upUsersStatus(userRepository);
+        List<User> list = increaseUsersStatus(userRepository);
         list.forEach(System.out::println);
 
         //4.3
         System.out.println("Написать метод, который сортирует юзеров по нику и отфильтровывает, чтобы в этой" +
                 " коллекции были юзеры старше 18 лет, если младше? то тем юзерам флаг меняется на " +
                 "isActive false и статус переходит в guest.");
-        List<User> newUserRepository = activateCensure(userRepository);
+        List<User> newUserRepository = getUserListOver18SortedByNicknameAndUpdateStatusUserUnder18YearsOld(userRepository);
         newUserRepository.forEach(System.out::println);
 
         //4.4
@@ -78,8 +78,8 @@ public class StreamTasks {
         System.out.println(numberUsersWithStatusUser);
     }
 
-    private static List<User> activateCensure(UserRepository userRepository) {
-        return userRepository.getUserRepository().stream()
+    private static List<User> getUserListOver18SortedByNicknameAndUpdateStatusUserUnder18YearsOld(UserRepository userRepository) {
+        return userRepository.getUserList().stream()
                 .sorted(Comparator.comparing(User::getNickname))
                 .peek(it -> {
                     if (it.getAge() < 18) {
@@ -92,13 +92,13 @@ public class StreamTasks {
     }
 
     private static long getNumberUsersWithStatusUser(UserRepository userRepository) {
-        return userRepository.getUserRepository().stream()
+        return userRepository.getUserList().stream()
                 .filter(it -> it.getStatus().equals(Status.USER) && it.isActive())
                 .count();
     }
 
-    private static List<User> upUsersStatus(UserRepository userRepository) {
-        return userRepository.getUserRepository().stream()
+    private static List<User> increaseUsersStatus(UserRepository userRepository) {
+        return userRepository.getUserList().stream()
                 .peek(it -> {
                     if (it.getStatus().equals(Status.USER) && it.isActive()) {
                         it.setStatus(Status.VIP_USER);

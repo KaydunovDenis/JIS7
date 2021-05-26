@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
-    private List<User> userRepository = new ArrayList<>(){{
+    private List<User> userList = new ArrayList<>(){{
         add(new User(0, "ALex", "Alexandro", "AlexAlexandro", 28,
                 "alexandro@mail.ru", "12345678", Status.GUEST, false));
         add(new User(1, "Aleksandr", "Full", "Ref1000", 20,
@@ -23,7 +23,7 @@ public class UserRepository {
                 "drogo@rambler.ru", "Drago9090", Status.VIP_USER, true));
     }};
 
-    public List<User> getUserRepository() {
-        return userRepository;
+    public List<User> getUserList() {
+        return userList;
     }
 }
