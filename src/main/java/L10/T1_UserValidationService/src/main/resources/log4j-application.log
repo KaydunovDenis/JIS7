@@ -105,3 +105,32 @@
 2021-05-05 01:23:25 INFO  - --Book(name=Anna Karenina, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - --Book(name=War and Peace, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - DeleteBook: Anna Karenina remove successful.
+2021-05-05 21:49:04 INFO  - Name or Last name must be maximum 15 symbols.
+2021-05-05 21:53:42 INFO  - Name or Last name must be minimum 3 symbols.
+2021-05-05 21:54:16 INFO  - Name or Last name must be minimum 3 symbols.
+2021-05-05 21:59:38 INFO  - Name or Last name must be minimum 3 symbols.
+2021-05-05 22:00:50 INFO  - Name or Last name must be minimum 3 symbols.
+2021-05-05 22:09:05 INFO  - User(firstName=Denis, lastName=Kaydunov, age=31) is validate successful.
+2021-05-05 22:09:05 INFO  - by.jrr.start.exception.UserValidationException
+2021-05-05 22:09:05 INFO  - by.jrr.start.exception.UserValidationException
+2021-05-05 22:09:05 INFO  - by.jrr.start.exception.UserValidationException
+2021-05-05 22:09:36 INFO  - User(firstName=Denis, lastName=Kaydunov, age=31) is validate successful.
+2021-05-05 22:09:36 INFO  - by.jrr.start.exception.UserValidationException
+2021-05-05 22:09:36 INFO  - by.jrr.start.exception.UserValidationException
+2021-05-05 22:09:36 INFO  - by.jrr.start.exception.UserValidationException
+2021-05-05 22:10:12 INFO  - User(firstName=Denis, lastName=Kaydunov, age=31) is validate successful.
+2021-05-05 22:10:12 INFO  - UserValidationException{message='Name or Last name must be minimum 3 symbols.'}
+2021-05-05 22:10:12 INFO  - UserValidationException{message='Name or Last name must be maximum 15 symbols.'}
+2021-05-05 22:10:12 INFO  - UserValidationException{message='User age is invalid. Age must be >0 and <120.'}
+2021-05-05 22:11:02 INFO  - User(firstName=Denis, lastName=Kaydunov, age=31) is validate successful.
+2021-05-05 22:11:02 INFO  - UserValidationException: message='Name or Last name must be minimum 3 symbols.'
+2021-05-05 22:11:02 INFO  - UserValidationException: message='Name or Last name must be maximum 15 symbols.'
+2021-05-05 22:11:02 INFO  - UserValidationException: message='User age is invalid. Age must be >0 and <120.'
+2021-05-05 22:11:34 INFO  - User(firstName=Denis, lastName=Kaydunov, age=31) is validate successful.
+2021-05-05 22:11:34 INFO  - UserValidationException: Name or Last name must be minimum 3 symbols.'
+2021-05-05 22:11:34 INFO  - UserValidationException: Name or Last name must be maximum 15 symbols.'
+2021-05-05 22:11:34 INFO  - UserValidationException: User age is invalid. Age must be >0 and <120.'
+2021-05-05 22:12:07 INFO  - User(firstName=Denis, lastName=Kaydunov, age=31) is validate successful.
+2021-05-05 22:12:07 INFO  - UserValidationException: Name or Last name must be minimum 3 symbols.
+2021-05-05 22:12:07 INFO  - UserValidationException: Name or Last name must be maximum 15 symbols.
+2021-05-05 22:12:07 INFO  - UserValidationException: User age is invalid. Age must be >0 and <120.
