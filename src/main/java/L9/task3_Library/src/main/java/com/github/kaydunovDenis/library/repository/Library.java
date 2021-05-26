@@ -6,9 +6,11 @@ import com.github.kaydunovDenis.library.service.LibraryService;
 import org.apache.log4j.Logger;
 
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Library implements LibraryService {
-    private final HashSet<Book> libraryBook = new HashSet<>();
+    private final Set<Book> libraryBook = new HashSet<>();
     final static Logger LOGGER = Logger.getLogger(Library.class);
 
     @Override
@@ -39,13 +41,10 @@ public class Library implements LibraryService {
     }
 
     @Override
-    public HashSet<Book> findByAuthor(String author) {
-        HashSet<Book> tempSet = new HashSet<>();
-        for (Book book : libraryBook) {
-            if (book.getAuthor().equals(author)) {
-                tempSet.add(book);
-            }
-        }
+    public Set<Book> findByAuthor(String author) {
+        Set<Book> tempSet = libraryBook.stream()
+                .filter(book -> book.getAuthor().equals(author))
+                .collect(Collectors.toSet());
         LOGGER.info("FindByAuthor: " + author);
         if (tempSet.size() > 0) {
             tempSet.forEach(x -> LOGGER.info("--" + x.toString()));
@@ -55,7 +54,7 @@ public class Library implements LibraryService {
         return tempSet;
     }
 
-    public HashSet<Book> getLibraryBook() {
+    public Set<Book> getLibraryBook() {
         return libraryBook;
     }
 }

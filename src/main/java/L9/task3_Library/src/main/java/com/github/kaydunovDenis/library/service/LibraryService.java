@@ -1,7 +1,8 @@
 package com.github.kaydunovDenis.library.service;
 
 import com.github.kaydunovDenis.library.model.Book;
-import java.util.HashSet;
+
+import java.util.Set;
 
 /**
  * [-]Добавить книгу в библиотеку
@@ -16,5 +17,5 @@ public interface LibraryService {
 
     Book findByName(String bookName);
 
-    HashSet<Book> findByAuthor(String author);
+    Set<Book> findByAuthor(String author);
 }
