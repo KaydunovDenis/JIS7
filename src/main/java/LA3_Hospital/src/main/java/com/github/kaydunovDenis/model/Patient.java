@@ -1,26 +1,20 @@
 package com.github.kaydunovDenis.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Patient implements Comparable<Patient> {
     private String name;
     private boolean isPaid;
     private Special special;
     private Time time;
-
-    public Patient(String name, boolean isPaid, Special special, Time time) {
-        this.name = name;
-        this.isPaid = isPaid;
-        this.special = special;
-        this.time = time;
-    }
+    private static final String TEMPLATE = "Patient\t%s:\t%-" + Special.MAX_LENGTH_FIELD_STRING_DOCTOR + "s %s";
 
     @Override
     public String toString() {
-        return "Patient\t" + getName() +
-                ":\t" + getSpecial() +
-                "\t" + getTime();
+        return String.format(TEMPLATE, getName(), getSpecial(), getTime());
     }
 
     @Override

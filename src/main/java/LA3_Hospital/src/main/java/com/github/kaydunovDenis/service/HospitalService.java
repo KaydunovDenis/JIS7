@@ -1,18 +1,19 @@
 package com.github.kaydunovDenis.service;
 
 import com.github.kaydunovDenis.exception.PatientRecordException;
-import com.github.kaydunovDenis.model.Time;
 import com.github.kaydunovDenis.model.Patient;
 import com.github.kaydunovDenis.model.Special;
+import com.github.kaydunovDenis.model.Time;
 import com.github.kaydunovDenis.repository.PatientRepository;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class HospitalService {
-    private static final int NUMBER_PATIENTS_PER_HOUR = 2;
+    private static final int STANDARD_NUMBER_PATIENTS_PER_HOUR = 2;
     private static final PatientRepository PATIENT_REPOSITORY = new PatientRepository();
     Logger log = Logger.getLogger(HospitalService.class);
 
@@ -48,37 +49,25 @@ public class HospitalService {
     }
 
     private boolean queueIsFree(Patient patient) {
-        boolean isFree = false;
-        if (calculateCounterEmptyPlaceInQueue(patient) > 0) {
-            isFree = true;
-        }
-        return isFree;
+        return calculateCounterEmptyPlaceInQueue(patient) > 0;
     }
 
     private int calculateCounterEmptyPlaceInQueue(Patient patient) {
-        int counterEmptyPlaceInQueue = NUMBER_PATIENTS_PER_HOUR;
-        for (Patient item : getPatientList()) {
-            if (item.getSpecial().equals(patient.getSpecial()) &&
-                    item.getTime().equals(patient.getTime())) {
-                counterEmptyPlaceInQueue--;
-            }
-        }
-        return counterEmptyPlaceInQueue;
+        AtomicInteger counterEmptyPlaceInQueue = new AtomicInteger(STANDARD_NUMBER_PATIENTS_PER_HOUR);
+        getPatientList().stream().
+                filter(it -> it.getSpecial().equals(patient.getSpecial()) && it.getTime().equals(patient.getTime())).
+                forEach(it -> counterEmptyPlaceInQueue.getAndDecrement());
+        return counterEmptyPlaceInQueue.get();
     }
 
     public List<Patient> getPatientList() {
         return PATIENT_REPOSITORY.getPatientList();
     }
 
-
     public List<Patient> getListPatientBySpecial(Special special) {
-        List<Patient> tempListPatient = new ArrayList<>();
-        for (Patient item : getPatientList()) {
-            if (item.getSpecial().equals(special)) {
-                tempListPatient.add(item);
-            }
-        }
-        return tempListPatient;
+        return getPatientList().stream()
+                .filter(patient -> patient.getSpecial().equals(special))
+                .collect(Collectors.toList());
     }
 
     public void addTestPatients(int countTestPatients) {
