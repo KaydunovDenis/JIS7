@@ -42,6 +42,7 @@ public class StringBuilderDemo {
         text.replace(18, 23, "это");
         System.out.println(text);
         text.insert(18, "- ");
-        System.out.println(text);
+        String result = text.toString();
+        System.out.println(result);
     }
 }
