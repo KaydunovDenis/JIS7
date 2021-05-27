@@ -7,6 +7,7 @@ new tasks
 как я понял это в будущем для CRUD
 
 New fields and validation improvements
+Task 1 for ShoppingListApplication
 Branch: feature/1
 1. Необходимо добавить в класс Product поля:
 категория
