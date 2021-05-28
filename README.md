@@ -1,7 +1,7 @@
 [![trophy](https://github-profile-trophy.vercel.app/?username=KaydunovDenis)](https://github.com/ryo-ma/github-profile-trophy)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KaydunovDenis&layout=compact)](https://github.com/anuraghazra/github-readme-stats) 
-[![Sparkline](https://stars.medv.io/Naereen/badges.svg)](https://stars.medv.io/Naereen/badges)
+[![Sparkline](https://stars.medv.io/KaydunovDenis/badges.svg)](https://stars.medv.io/KaydunovDenis/badges)
 
 
 ### Learning Java on JavaGuru
