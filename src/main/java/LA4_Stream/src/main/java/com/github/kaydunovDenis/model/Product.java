@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Product {
-    String name;
-    double price;
-    double discount;
+    private String name;
+    private double price;
+    private double discount;
 
     @Override
     public String toString() {
