@@ -1,9 +1,13 @@
-package L9.task3_Library.src.main.java.com.github.kaydunovDenis.library.model;
+package com.github.kaydunovDenis.library.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
-    String author;
     String name;
+    String author;
 }
