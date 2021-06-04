@@ -40,7 +40,7 @@ public class StreamTasksDemo {
         UserRepository userRepository = new UserRepository();
         System.out.println(increaseUsersStatus(userRepository));
         //4.3
-        System.out.println(getUserListOver18SortedByNicknameAndUpdateStatusUserUnder18YearsOld(userRepository));
+        System.out.println(updateStatusForMinorUser(userRepository));
         //4.4
         System.out.println(getNumberUsersWithStatusUser(userRepository));
     }
