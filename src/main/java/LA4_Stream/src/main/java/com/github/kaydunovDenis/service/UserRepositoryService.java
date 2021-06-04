@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserRepositoryService {
-    public static List<User> getUserListOver18SortedByNicknameAndUpdateStatusUserUnder18YearsOld(UserRepository userRepository) {
+    public static List<User> updateStatusForMinorUser(UserRepository userRepository) {
         System.out.println("Написать метод, который сортирует юзеров по нику и отфильтровывает, чтобы в этой" +
                 " коллекции были юзеры старше 18 лет, если младше? то тем юзерам флаг меняется на " +
                 "isActive false и статус переходит в guest.");
