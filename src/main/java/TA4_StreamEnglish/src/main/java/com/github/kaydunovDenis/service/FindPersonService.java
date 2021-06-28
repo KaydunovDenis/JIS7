@@ -16,6 +16,7 @@ public interface FindPersonService {
     static Person findPersonWithBestProficiencyRequiredSkill(List<Person> list, String skillName) {
         return list.stream()
                 .max(Comparator.comparingInt(person -> person.getProficiencyByNameSkill(skillName)))
-                .orElseThrow();
+                .orElseThrow(IllegalArgumentException::new);
+        //Я не знаю как правильно обработать null в Optional
     }
 }
