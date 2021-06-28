@@ -1,10 +1,13 @@
 ###Task
-* Tasks:
-[+] 1. Find a best matching person - for ex;
+Tasks:
+
+  - [ ] Find a best matchings persons - for ex;
      If someone is looking for English with more than 50% proficiency then 
-               we need to search for Person whose proficiency is more than 50%.
+               we need to search for Persons whose proficiency is more than 50%.
      In the above example it is Gnanesh who has 100% proficiency in English.
-[+] 2. If none of the Person meets Given threshold 
+    
+
+-[ ] If none of the Person meets given threshold 
      (Case for Kannada in above example) then find Technician who is best among rest
      ie Suresh in the above case (40%)
 
