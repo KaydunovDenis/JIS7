@@ -1,4 +1,4 @@
-package strings.string_stringBuilder;
+package strings_task.string_stringBuilder;
 
 import org.junit.Test;
 

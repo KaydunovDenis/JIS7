@@ -1,4 +1,4 @@
-package strings.labyrintht;
+package strings_task.labyrintht;
 
 import java.util.Scanner;
 
