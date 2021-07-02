@@ -1,4 +1,4 @@
-package strings.lectureBot;
+package strings_task.lectureBot;
 
 import org.junit.Test;
 

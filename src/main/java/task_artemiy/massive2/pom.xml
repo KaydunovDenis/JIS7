@@ -12,7 +12,7 @@
 	<artifactId>LA2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>crudX</name>
-	<description>TA2massive - Massive</description>
+	<description>task_artemiy.massive2 - Massive</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

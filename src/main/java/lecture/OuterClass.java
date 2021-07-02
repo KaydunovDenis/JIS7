@@ -1,4 +1,4 @@
-package Lecture.NestedClass;
+package lecture;
 
 public class OuterClass {
     String outerName;
