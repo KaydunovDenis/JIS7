@@ -10,10 +10,8 @@ public class AnnotationDemo {
         GenerateIntegerValueAnnotationProcessor processor = new GenerateIntegerValueAnnotationProcessor();
         processor.analyze(calculatorObject);
         System.out.println(calculatorObject);
-    }
 
-    @TimeFrameDefinition
-    public void init() {
-
+        TimeFrameDefinitionAnnotationProcessor timeFrameDefinitionAnnotationProcessor = new TimeFrameDefinitionAnnotationProcessor();
+        timeFrameDefinitionAnnotationProcessor.execute(calculatorObject);
     }
 }

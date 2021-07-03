@@ -105,3 +105,9 @@
 2021-05-05 01:23:25 INFO  - --Book(name=Anna Karenina, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - --Book(name=War and Peace, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - DeleteBook: Anna Karenina remove successful.
+2021-07-03 07:56:30 INFO  - Start: 1625288190279
+2021-07-03 07:56:30 INFO  - ExecutionTime: 22
+2021-07-03 08:56:49 INFO  - Start: 1625291809377
+2021-07-03 08:56:49 INFO  - ExecutionTime: 7
+2021-07-03 08:56:49 INFO  - Start: 1625291809384
+2021-07-03 08:56:49 INFO  - ExecutionTime: 1
