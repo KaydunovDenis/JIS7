@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -24,13 +23,5 @@ public class Person {
     @Override
     public String toString() {
         return String.format("%d:%s {%s}", id, name, skills);
-    }
-
-    public int getProficiencyByNameSkill(String skillName) {
-        return Objects.requireNonNull(getSkills().stream()
-                .filter(it -> Objects.equals(it.getName(), skillName))
-                .findAny()
-                .orElse(null))
-                .getProficiency();
     }
 }
