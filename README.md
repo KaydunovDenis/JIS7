@@ -3,4 +3,3 @@
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KaydunovDenis&layout=compact)](https://github.com/ryo-ma/github-readme-stats) 
 
 ### Learning Java on JavaGuru
-
