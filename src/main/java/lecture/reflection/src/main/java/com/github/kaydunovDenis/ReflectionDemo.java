@@ -18,7 +18,7 @@ public class ReflectionDemo {
         Field[] declaredFields = productClass.getDeclaredFields();
         Method[] methods = productClass.getMethods();
         Method[] declaredMethod = productClass.getDeclaredMethods();
-        Constructor<?>[] declaredConstructors = productClass.getDeclaredConstructors();
+        Constructor<?>[] declaredConstructors = productClass.getDeclaredConstructors();//получаем список конуструкторов
 
         System.out.printf("className = %s,\nsimpleClassName = %s,\nfields = %s,\ndeclaredFields = %s\n\n",
                 productClassName, productClassSimpleName, Arrays.toString(fields), Arrays.toString(declaredFields));
@@ -42,6 +42,7 @@ public class ReflectionDemo {
         System.out.println(field.get(product));
 
         System.out.println(declaredMethod[8]);// вызываем один из методов из общего списка методов класса.
+
     }
 }
 
