@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.kaydunovDenis</groupId>
-	<artifactId>crud</artifactId>
+	<artifactId>optional</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>crud</name>
-	<description>Crud application.</description>
+	<description>optional</description>
 	<properties>
 		<java.version>14</java.version>
 	</properties>
