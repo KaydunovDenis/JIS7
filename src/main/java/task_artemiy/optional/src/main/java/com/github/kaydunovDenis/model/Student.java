@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class Student extends Person {
-
+    public Student(String firstName, String lastName, Integer age) {
+        super(firstName, lastName, age);
+    }
 }

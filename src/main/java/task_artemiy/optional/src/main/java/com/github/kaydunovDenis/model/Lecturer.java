@@ -8,10 +8,14 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper=false)
 public class Lecturer extends Person {
-    List<Student> userList = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
+
+    public Lecturer(String firstName, String lastName, Integer age) {
+        super(firstName, lastName, age);
+    }
 }
