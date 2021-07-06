@@ -105,3 +105,8 @@
 2021-05-05 01:23:25 INFO  - --Book(name=Anna Karenina, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - --Book(name=War and Peace, author=Leo Tolstoy)
 2021-05-05 01:23:25 INFO  - DeleteBook: Anna Karenina remove successful.
+2021-07-04 18:23:18 INFO  - 1: Lecturer(students=[Student(), Student(), Student(), Student()])
+2021-07-05 09:21:11 INFO  - 1: Lecturer(students=[Student(), Student(), Student(), Student()])
+2021-07-05 09:22:57 INFO  - 1: Lecturer(students=[Student(), Student(), Student(), Student()])
+2021-07-05 09:24:31 INFO  - 1: Lecturer(students=[Student(), Student(), Student(), Student()])
+2021-07-05 18:19:13 INFO  - 1: Lecturer(students=[Student(firstName=Denis, lastName=Kaydunov, age=31), Student(firstName=Katya, lastName=Bulova, age=19), Student(firstName=Vlad, lastName=Dragon, age=29), Student(firstName=Alexander, lastName=Matckevich, age=33)], firstName=Artemiy, lastName=Stankevich, age=33)
