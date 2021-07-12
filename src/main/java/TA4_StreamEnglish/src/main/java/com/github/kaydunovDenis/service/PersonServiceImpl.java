@@ -2,7 +2,6 @@ package com.github.kaydunovDenis.service;
 
 import com.github.kaydunovDenis.exception.NotFoundPersonException;
 import com.github.kaydunovDenis.model.Person;
-import lombok.extern.java.Log;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Log
 public class PersonServiceImpl implements PersonService {
     public Collection<Person> findBestMatchingPersons(List<Person> list, String skillName, int proficiency) {
         return list.stream()
@@ -22,7 +20,7 @@ public class PersonServiceImpl implements PersonService {
         return list.stream()
                 .max(Comparator.comparingInt(person -> getProficiencyByNameSkill(person, skillName)))
                 .orElseThrow(() -> {
-                            log.info("The Person not found.");
+                            //l//("The Person not found.");
                             throw new NotFoundPersonException();
                         }
                 );
@@ -33,7 +31,7 @@ public class PersonServiceImpl implements PersonService {
                 .filter(it -> Objects.equals(it.getName(), skillName))
                 .findAny()
                 .orElseThrow(() -> {
-                    log.info("The Person not found.");
+                    //log.info("The Person not found.");
                     throw new NotFoundPersonException();
                 })
                 .getProficiency();

@@ -7,15 +7,15 @@ import com.github.kaydunovDenis.service.PersonServiceImpl;
 import lombok.extern.java.Log;
 
 @Log
-public class FindPersonServiceDemo {
+public class App {
     public static void main(String[] args) {
         PersonService personService = new PersonServiceImpl();
         PersonRepository.initialize();
-        PersonRepository.getPersons().forEach(System.out::println);
+        PersonRepository.getPersons().forEach(it -> log.info(it.toString()));
 
         log.info("Persons has English > 50%");
         personService.findBestMatchingPersons(
-                PersonRepository.getPersons(), "English", 50).forEach(System.out::println);
+                PersonRepository.getPersons(), "English", 50).forEach(it->log.info(it.toString()));
 
         log.info("Best Person has Kannada");
         Person person = personService.findBestMatchingPerson(PersonRepository.getPersons(), "Kannada");
