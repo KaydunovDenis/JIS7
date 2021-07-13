@@ -22,7 +22,6 @@ class HospitalServiceTest extends TestCase {
     void beforeEach() {
         System.out.println("before");
         hospitalService = new HospitalService();
-        //ПОЧЕМУ без строчки ниже. В момент инициализации hospitalService, PATIENT_REPOSITORY уже не пустой????
         hospitalService.getPatientList().clear();
         System.out.println(hospitalService.getPatientList().size());
     }
