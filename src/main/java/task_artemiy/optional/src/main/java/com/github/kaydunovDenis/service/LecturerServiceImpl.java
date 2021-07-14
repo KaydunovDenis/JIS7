@@ -9,14 +9,13 @@ import lombok.extern.java.Log;
 import java.util.Arrays;
 import java.util.Optional;
 
-import static com.github.kaydunovDenis.service.PersonValidator.validateEmptyValue;
+import static com.github.kaydunovDenis.service.PersonValidator.validate;
 
-@Data
 @Log
 public class LecturerServiceImpl implements LecturerService {
     @Override
     public void addStudent(Lecturer lecturer, Student student) {
-        if (validateEmptyValue(student)) {
+        if (validate(student)) {
             lecturer.getStudents().add(student);
         }
     }

@@ -8,7 +8,7 @@ import org.intellij.lang.annotations.Pattern;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Person {
+public class Person {
     @Pattern("[A-Z][a-z]*")
     public String firstName;
     public String lastName;
