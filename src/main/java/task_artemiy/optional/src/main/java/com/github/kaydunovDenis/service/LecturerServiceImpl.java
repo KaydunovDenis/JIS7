@@ -3,15 +3,14 @@ package com.github.kaydunovDenis.service;
 import com.github.kaydunovDenis.exception.NotFoundStudentException;
 import com.github.kaydunovDenis.model.Lecturer;
 import com.github.kaydunovDenis.model.Student;
-import lombok.Data;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
 
 import java.util.Arrays;
 import java.util.Optional;
 
 import static com.github.kaydunovDenis.service.PersonValidator.validate;
 
-@Log
+@Log4j
 public class LecturerServiceImpl implements LecturerService {
     @Override
     public void addStudent(Lecturer lecturer, Student student) {
@@ -23,11 +22,11 @@ public class LecturerServiceImpl implements LecturerService {
     @Override
     public void addStudents(Lecturer lecturer, Student... students) {
         Arrays.stream(students)
-                .forEach(it -> addStudents(lecturer, it));
+                .forEach(it -> addStudent(lecturer, it));
     }
 
     @Override
-    public Optional<Student> getUserByName(Lecturer lecturer, String firstName) {
+    public Optional<Student> getStudentByName(Lecturer lecturer, String firstName) {
         return Optional.ofNullable(lecturer.getStudents().stream()
                 .filter(it -> it.getFirstName().equals(firstName))
                 .findFirst()

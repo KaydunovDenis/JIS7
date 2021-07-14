@@ -11,5 +11,5 @@ public interface LecturerService {
 
     void addStudents(Lecturer lecturer, Student... students);
 
-    Optional<Student> getUserByName(Lecturer lecturer, String firstName);
+    Optional<Student> getStudentByName(Lecturer lecturer, String firstName);
 }
