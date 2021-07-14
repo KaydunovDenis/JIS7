@@ -11,17 +11,15 @@ public class App {
         LecturerServiceImpl lecturerService = new LecturerServiceImpl();
 
         Lecturer lecturer1 = new Lecturer("Artemiy", "Stankevich", 33);
-        System.out.println(lecturer1);
-
-        //Lecturer lecturer2 = new Lecturer("Maksim", "Shelkovich", 35);
+        Lecturer lecturer2 = new Lecturer("Maksim", "Shelkovich", 35);
 
         Student student1 = new Student("Denis", "Kaydunov", 31);
-        System.out.println(student1);
         Student student2 = new Student("Katya", "Bulova", 19);
         Student student3 = new Student("Artemiy", "Stankevich", 33);
         Student student4 = new Student("Alex", "Matukevich", 27);
         Student student5 = new Student("Vlad", "Dragon", 29);
         Student student6 = new Student("Alexander", "Matckevich", 33);
+
         //Student studentError1 = new Student(null, "Marro", 27);
         //Student studentError2 = new Student("Andrey", "Marro", 0);
         //Student studentError3 = new Student("Alex", "Marro", null);

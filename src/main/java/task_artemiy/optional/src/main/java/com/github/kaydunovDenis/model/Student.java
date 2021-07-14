@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Student extends Person {
-    
+
     public Student(String firstName, String lastName, Integer age) {
         super(firstName, lastName, age);
     }
