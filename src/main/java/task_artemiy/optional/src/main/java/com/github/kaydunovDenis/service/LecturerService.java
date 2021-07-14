@@ -12,8 +12,4 @@ public interface LecturerService {
     void addStudents(Lecturer lecturer, Student... students);
 
     Optional<Student> getUserByName(Lecturer lecturer, String firstName);
-
-    void showAllStudents(Lecturer lecturer);
-
-    void updateStudent(Lecturer lecturer, Long idStudent, String newFirstName, String newLastName, Integer newAge);
 }
