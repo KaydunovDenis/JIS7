@@ -1,6 +1,8 @@
-import java.util.Locale;
 import java.util.Optional;
 
+/**
+ * https://www.youtube.com/watch?v=fbEnhHjEX3M - урок об Optional
+ */
 public class OptionalDemo {
     public static void main(String[] args) {
 
@@ -35,7 +37,7 @@ public class OptionalDemo {
         //optionalNull.ifPresentOrElse(System.out::println, () -> System.out.println("Data is null"));
 
         Person person = new Person("Sergey", null);
-        String message = person
+        var message = person
                 .getEmail()
                 .map(String::toLowerCase)
                 .orElse(person.name + " dont have the email.");
