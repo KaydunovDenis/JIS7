@@ -10,7 +10,7 @@ import java.sql.Statement;
 @AllArgsConstructor
 public class PostgresConnector {
     public static final String USERNAME = "postgres";
-    public static final String PASS = "Warden2021!";
+    public static final String PASS = "11111111";
     public static final String URL = "jdbc:postgresql://localhost:5432/user";
 
     static Connection connection;
