@@ -6,7 +6,7 @@ import com.github.kaydunovDenis.model.SecondProduct;
 
 public class AnnotationDemo {
     public static void main(String[] args) throws Exception {
-        var processor = new ValidateNumberAnnotationProcessor();
+        ValidateNumberAnnotationProcessor processor = new ValidateNumberAnnotationProcessor();
 
         PermissionToAccess permission = new PermissionToAccess(-5);
         SecondProduct product = new SecondProduct(9, 120);
