@@ -150,3 +150,4 @@
 2021-07-18 11:50:08 INFO  - User(id=1, name=Antuan, age=30) save in MockUserRepository.
 2021-07-18 12:03:23 INFO  - User(id=1, name=Antuan, age=30) save in MockUserRepository.
 2021-07-18 12:05:15 INFO  - User(id=1, name=Antonio, age=30) save in MockUserRepository.
+2021-07-18 18:10:25 INFO  - User(id=1, name=Antonio, age=30) save in MockUserRepository.
