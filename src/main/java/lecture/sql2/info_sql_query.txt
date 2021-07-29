@@ -1,0 +1,226 @@
+SELECT *
+from superheroes;
+
+SELECT gender, COUNT(*)
+from superheroes
+GROUP BY gender;
+
+SELECT eye, count(*)
+from superheroes--count считает количество строк
+GROUP BY eye;--разбивает на подгруппы к примеру мужчины/женщины
+
+SELECT universe, align, count(*)
+from superheroes
+where id < 100
+group by universe, align
+order by universe, align;
+
+SELECT eye, count(*)
+from superheroes
+GROUP BY eye
+order by count(*) desc
+limit 10;
+
+--AVG
+SELECT universe, gender, avg(appearances)
+from superheroes
+group by universe, gender;
+
+SELECT universe, avg(appearances)
+from superheroes
+group by universe;
+
+SELECT universe, sum(appearances), count(*), avg(appearances), max(appearances)
+from superheroes
+group by universe;
+
+SELECT align,
+       avg(appearances),
+       sum(appearances) / count(*) AS average
+from superheroes
+group by align;
+
+SELECT universe, align, sum(appearances), count(*), avg(appearances), max(appearances)
+from superheroes
+group by universe, align;
+
+SELECT universe, sum(appearances)
+from superheroes
+group by universe;
+
+select year, min(appearances), max(appearances)
+from superheroes
+group by year
+order by year;
+
+select name, year, max(appearances) AS count_appearances
+from superheroes
+group by year, name
+order by year desc, count_appearances desc;
+
+SELECT count(*),
+       min(appearances),
+       max(appearances),
+       avg(appearances),
+       sum(appearances)
+from superheroes;
+
+select name, appearances, year
+from superheroes
+order by appearances desc
+limit 10;
+
+--HAVING фильтрация результатов группировки
+--WHERE фильтрация строк таблицы
+
+--порядок выполнения запроса - SELECT
+--1 From
+--2 Where
+--3 Group by
+--4 Having
+
+--JOIN запрос из нескольких таблиц
+SELECT products.name, product_types.type_name
+from products
+         join product_types
+              on products.type_id = product_types.id;
+
+--сокращение запроса
+SELECT p.name, t.type_name, p.price
+from products AS p
+         join product_types AS t
+              on p.type_id = t.id
+WHERE t.type_name = 'Вебинар';
+
+SELECT p.name, t.type_name, p.price
+from products AS p
+         join product_types AS t
+              on p.type_id = t.id
+WHERE t.type_name = 'Онлайн-курс'
+ORDER BY price DESC;
+
+SELECT t.type_name, count(*), MAX(price), MIN(price)
+from products AS p
+         join product_types AS t
+              on p.type_id = t.id
+WHERE price > 500
+GROUP BY t.type_name;
+
+--объединения
+--inner join    or  join
+--left outer join
+--right outer join
+--full outer join
+--cross join
+SELECT p.name, t.type_name
+from products AS p
+         join product_types AS t
+              on p.type_id = t.id;
+
+SELECT p.name, t.type_name
+from products AS p
+         left outer join product_types AS t
+                         on p.type_id = t.id;
+
+SELECT p.name, t.type_name
+from products AS p
+         right outer join product_types AS t
+                          on p.type_id = t.id;
+
+
+SELECT p.name, t.type_name
+from products AS p
+         full outer join product_types AS t
+                         on p.type_id = t.id;
+
+
+SELECT p.name, t.type_name
+from products AS p
+         cross join product_types AS t;
+
+INSERT INTO products
+VALUES (13, 'Анализ временных рядов', null, 10000);
+
+SELECT *
+from product_types;
+
+SELECT *
+FROM products;
+
+SELECT *
+FROM sales
+order by order_id;
+
+SELECT *
+FROM orders;
+
+
+--Все покупки заказчика
+--сложный запрос из нескольких таблиц
+SELECT p.id,
+       p.name,
+       p.price,
+       s.quantity,
+       p.price * s.quantity total,
+       o.customer_id,
+       o.id
+FROM products p
+         JOIN sales s
+              on p.id = s.product_id
+         JOIN orders o on o.id = s.order_id
+where o.customer_id = 1;
+
+--subqueries
+SELECT id, name, price
+FROM products
+WHERE price = (SELECT MAX(price)
+               FROM products);
+
+SELECT id, name, price
+FROM products
+WHERE id IN (SELECT product_id
+             FROM sales);
+
+UPDATE products
+SET price = price + 500
+WHERE type_id = (SELECT id
+                 FROM product_types
+                 WHERE product_types.type_name = 'Книга');
+
+START TRANSACTION;
+UPDATE accounts
+SET balance = balance + 15000
+WHERE accounts_number = 1234567;
+UPDATE accounts
+SET balance = balance - 15000
+WHERE accounts_number = 9876543;
+COMMIT; -- фиксация и сохранение в базу данных
+ROLLBACK; -- откат транзакций
+
+SELECT *
+FROM accounts;
+
+-------------------
+CREATE TABLE accounts
+(
+    id              INT primary key,
+    accounts_number INT,
+    balance         INT
+);
+
+DROP TABLE accounts;
+
+
+INSERT INTO accounts (id, accounts_number, balance)
+VALUES (1, 1234567, 100000);
+
+INSERT INTO accounts (id, accounts_number, balance)
+VALUES (2, 9876543, 100000);
+
+DELETE
+FROM accounts
+WHERE accounts_number = 9876543;
+
+--INDEX - ускоряют работу базы данных
+CREATE INDEX superheroes_name_idx
+    ON superheroes (name);
