@@ -16,11 +16,6 @@ public class TestBoard {
     private static final int ALIVE = 1;
     private static final int X = 1;
     private static final int Y = 1;
-    private final int number;
-
-    public TestBoard(int number) {
-        this.number = number;
-    }
 
     @Test
     public void givenCellX1Y1returnsAlive() {
