@@ -9,20 +9,29 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.kaydunovDenis</groupId>
-	<artifactId>crud</artifactId>
+	<artifactId>tdd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>crud</name>
-	<description>Crud application.</description>
+	<name>tdd</name>
+	<description>Test driving development - lecture.</description>
 	<properties>
 		<java.version>14</java.version>
 	</properties>
 	<dependencies>
+
+		<!--For Testing : TDD-->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.8.0-M1</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -38,5 +47,11 @@
 			<artifactId>postgresql</artifactId>
 			<version>8.4-702.jdbc4</version>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>5.8.0-M1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>
