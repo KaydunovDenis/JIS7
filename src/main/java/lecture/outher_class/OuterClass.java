@@ -1,4 +1,4 @@
-package lecture.OutherClass;
+package lecture.outher_class;
 
 public class OuterClass {
     String outerName;
