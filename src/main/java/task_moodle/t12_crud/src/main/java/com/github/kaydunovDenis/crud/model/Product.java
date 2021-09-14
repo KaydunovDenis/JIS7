@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Product {
-    public Long ID;
+    public Long ID;//TODO ID будет генериться в spring автоматически
     public String name;
     public BigDecimal regularPrice;
     public ProductCategory productCategory;
@@ -64,12 +64,14 @@ public class Product {
         ID = counterID++;
     }
 
+    //TODO вынести в отдельный клас ProductValidator
     private void validateCategory(String category) throws ErrorCommandException {
         if (ProductCategory.contains(category)) {
             productCategory = ProductCategory.valueOf(category);
         } else throw new ErrorCommandException(name + MESSAGE_ERROR_CATEGORY);
     }
 
+    //TODO вынести в отдельный клас ProductValidator
     private void validatePrice(String textPrice) throws ErrorCommandException {
         textPrice = replaceSeparator(textPrice);
         try {
@@ -95,6 +97,7 @@ public class Product {
         return DECIMAL_FORMAT.format(actualPrice);
     }
 
+    //TODO вынести в отдельный клас ProductValidator
     public void validateAndCreateDiscount(String textDiscount) throws ErrorCommandException {
         textDiscount = replaceSeparator(textDiscount);
         if (textDiscount.equals("")) textDiscount = "0";
