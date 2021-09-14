@@ -1,5 +1,6 @@
 package com.github.kaydunovDenis;
 
+import com.github.kaydunovDenis.model.Person;
 import com.github.kaydunovDenis.model.Product;
 
 import java.lang.reflect.Constructor;
@@ -8,9 +9,29 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+/**
+ * Рефлексия - это механизм обращения к данным программы во время её выполнения.
+ */
 public class ReflectionDemo {
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 //        Product product = new Product();// приватный, нельзя создать объект
+//        однако рефлексия позволяет нам это сделать
+
+       //способы создания объекта
+        Person person = new Person();
+        //1 по объекту
+        Class<? extends Person> getClassForPeron = person.getClass();
+        //2 по классу
+        Class<Person> personClass = Person.class;
+        //3 по пути к классу
+        try {
+            Class<?> classForPerson = Class.forName("com.github.kaydunovDenis.model.Person");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(getClassForPeron.getName());
+
+
         Class<Product> productClass = Product.class;
         String productClassName = productClass.getName();
         String productClassSimpleName = productClass.getSimpleName();
